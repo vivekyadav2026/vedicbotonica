@@ -182,6 +182,16 @@
                                         {{ $product->name }}
                                     </a>
                                 </h3>
+                                @if($product->reviews_count > 0)
+                                    <div class="flex items-center space-x-1 mt-1 text-yellow-500 text-[9px] sm:text-[10px]">
+                                        <div class="flex gap-0.5">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                                            @endfor
+                                        </div>
+                                        <span class="text-gray-400 font-semibold font-sans">({{ $product->reviews_count }})</span>
+                                    </div>
+                                @endif
                                 <p :class="viewMode === 'grid' ? 'text-[10px] sm:text-[11px] text-gray-400 line-clamp-1 mt-1' : 'text-sm text-gray-500 mt-2'" class="font-sans font-normal leading-normal">
                                     {{ $product->short_description }}
                                 </p>

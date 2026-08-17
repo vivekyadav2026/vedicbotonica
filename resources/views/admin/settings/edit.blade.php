@@ -101,6 +101,39 @@
             </div>
         </div>
 
+        <!-- Social Media Links -->
+        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100 space-y-4">
+            <h4 class="font-serif font-bold text-slate-800 text-sm pb-1.5 border-b border-slate-200">Social Media Links</h4>
+
+            <!-- Facebook URL -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Facebook URL</label>
+                <input type="url" name="facebook_url" value="{{ $settings['facebook_url'] ?? '' }}" placeholder="https://facebook.com/..."
+                       class="w-full border border-slate-200 focus:ring-1 focus:ring-[#C49A6C] focus:border-[#C49A6C] rounded-xl text-sm px-4 py-2.5 bg-white">
+            </div>
+
+            <!-- Instagram URL -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Instagram URL</label>
+                <input type="url" name="instagram_url" value="{{ $settings['instagram_url'] ?? '' }}" placeholder="https://instagram.com/..."
+                       class="w-full border border-slate-200 focus:ring-1 focus:ring-[#C49A6C] focus:border-[#C49A6C] rounded-xl text-sm px-4 py-2.5 bg-white">
+            </div>
+
+            <!-- Twitter / X URL -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Twitter / X URL</label>
+                <input type="url" name="twitter_url" value="{{ $settings['twitter_url'] ?? '' }}" placeholder="https://x.com/..."
+                       class="w-full border border-slate-200 focus:ring-1 focus:ring-[#C49A6C] focus:border-[#C49A6C] rounded-xl text-sm px-4 py-2.5 bg-white">
+            </div>
+
+            <!-- YouTube URL -->
+            <div class="space-y-1.5">
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">YouTube URL</label>
+                <input type="url" name="youtube_url" value="{{ $settings['youtube_url'] ?? '' }}" placeholder="https://youtube.com/..."
+                       class="w-full border border-slate-200 focus:ring-1 focus:ring-[#C49A6C] focus:border-[#C49A6C] rounded-xl text-sm px-4 py-2.5 bg-white">
+            </div>
+        </div>
+
         <!-- Submit Buttons -->
         <div class="flex justify-end pt-4 border-t border-slate-100">
             <button type="submit" class="w-full sm:w-auto bg-[#C49A6C] hover:bg-[#b0875b] text-white font-bold text-sm px-8 py-3.5 rounded-xl shadow-md shadow-[#C49A6C]/20 transition cursor-pointer">

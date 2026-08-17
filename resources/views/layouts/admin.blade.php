@@ -65,6 +65,13 @@
                     <span :class="sidebarCollapsed ? 'lg:hidden' : 'inline'">Products</span>
                 </a>
 
+                <a href="{{ route('admin.reviews.index') }}" 
+                   class="flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('admin.reviews.*') ? 'bg-[#C49A6C] text-white shadow-lg shadow-[#C49A6C]/25' : 'hover:bg-slate-800 hover:text-white' }}"
+                   :class="sidebarCollapsed ? 'lg:justify-center lg:space-x-0' : 'space-x-3.5'">
+                    <i class="fa-solid fa-star w-5 text-center flex-shrink-0"></i>
+                    <span :class="sidebarCollapsed ? 'lg:hidden' : 'inline'">Product Reviews</span>
+                </a>
+
                 <a href="{{ route('admin.categories.index') }}" 
                    class="flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('admin.categories.*') ? 'bg-[#C49A6C] text-white shadow-lg shadow-[#C49A6C]/25' : 'hover:bg-slate-800 hover:text-white' }}"
                    :class="sidebarCollapsed ? 'lg:justify-center lg:space-x-0' : 'space-x-3.5'">

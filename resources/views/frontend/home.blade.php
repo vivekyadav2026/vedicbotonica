@@ -342,6 +342,16 @@
                                     {{ $product->name }}
                                 </a>
                             </h3>
+                            @if($product->reviews_count > 0)
+                                <div class="flex items-center space-x-1 mt-1 text-yellow-500 text-[9px] sm:text-[10px]">
+                                    <div class="flex gap-0.5">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                                        @endfor
+                                    </div>
+                                    <span class="text-gray-400 font-semibold font-sans">({{ $product->reviews_count }})</span>
+                                </div>
+                            @endif
                             <p class="text-[10px] sm:text-[11px] text-gray-400 line-clamp-1 font-sans font-normal leading-normal">{{ $product->short_description }}</p>
                         </div>
 
@@ -411,10 +421,21 @@
                         </h2>
                         
                         <!-- Rating -->
+                        @if($dealOfWeek->reviews_count > 0)
+                        <div class="flex items-center justify-center lg:justify-start space-x-1.5 text-yellow-400 text-sm">
+                            <div class="flex gap-0.5">
+                                @for($i = 1; $i <= 5; $i++)
+                                    <i class="fa-{{ $i <= round($dealOfWeek->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                                @endfor
+                            </div>
+                            <span class="text-gray-500 font-sans text-xs ml-2">({{ $dealOfWeek->average_rating }}/5 Rating from {{ $dealOfWeek->reviews_count }} {{ Str::plural('review', $dealOfWeek->reviews_count) }})</span>
+                        </div>
+                        @else
                         <div class="flex items-center justify-center lg:justify-start space-x-1.5 text-yellow-400 text-sm">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                             <span class="text-gray-500 font-sans text-xs ml-2">(4.9/5 Rating)</span>
                         </div>
+                        @endif
 
                         <p class="text-sm sm:text-base text-gray-600 leading-relaxed font-sans max-w-2xl mx-auto lg:mx-0">
                             {{ $dealOfWeek->short_description ?? 'Purify your space with our premium hand-rolled dhoop sticks, made using ancient Ayurvedic traditions.' }}
@@ -535,6 +556,16 @@
                                     {{ $product->name }}
                                 </a>
                             </h3>
+                            @if($product->reviews_count > 0)
+                                <div class="flex items-center space-x-1 mt-1 text-yellow-500 text-[9px] sm:text-[10px]">
+                                    <div class="flex gap-0.5">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                                        @endfor
+                                    </div>
+                                    <span class="text-gray-400 font-semibold font-sans">({{ $product->reviews_count }})</span>
+                                </div>
+                            @endif
                             <p class="text-[10px] sm:text-[11px] text-gray-400 line-clamp-1 font-sans font-normal leading-normal">{{ $product->short_description }}</p>
                         </div>
 

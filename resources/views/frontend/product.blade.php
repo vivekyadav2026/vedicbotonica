@@ -39,8 +39,8 @@
                     @endif
                     
                     <!-- Main Image Card -->
-                    <div class="flex-grow bg-white rounded-3xl overflow-hidden border border-[#C49A6C]/10 shadow-[0_10px_35px_rgba(196,154,108,0.05)] flex items-center justify-center p-6 aspect-square group max-w-md md:max-w-none mx-auto w-full">
-                        <img :src="activeImage" alt="{{ $product->name }}" class="max-h-[90%] max-w-[90%] object-contain block transition-transform duration-700 ease-out group-hover:scale-103">
+                    <div class="md:flex-grow bg-white rounded-3xl overflow-hidden border border-[#C49A6C]/10 shadow-[0_10px_35px_rgba(196,154,108,0.05)] flex items-center justify-center p-0 aspect-square group max-w-md md:max-w-none mx-auto w-full">
+                        <img :src="activeImage" alt="{{ $product->name }}" class="w-full h-full object-contain block transition-transform duration-700 ease-out group-hover:scale-103">
                     </div>
                 </div>
             </div>
@@ -56,6 +56,18 @@
                             <i class="fa-solid fa-share-nodes text-lg"></i>
                         </button>
                     </div>
+                    @if($product->reviews_count > 0)
+                    <div class="flex items-center space-x-2 mt-2">
+                        <div class="flex text-yellow-500 text-[10px] gap-0.5">
+                            @for($i = 1; $i <= 5; $i++)
+                                <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                            @endfor
+                        </div>
+                        <a href="#reviews-section" class="text-xs font-bold text-[#C49A6C] hover:underline font-sans">
+                            {{ $product->average_rating }} ({{ $product->reviews_count }} {{ Str::plural('review', $product->reviews_count) }})
+                        </a>
+                    </div>
+                    @endif
                 </div>
 
                 <!-- Price Area -->
@@ -72,26 +84,6 @@
                     @endif
                 </div>
 
-                <!-- Badges Grid (Cash on Delivery, Return, Free Delivery) -->
-                <div class="grid grid-cols-3 gap-2 border border-gray-150 rounded-2xl p-3.5 bg-[#fdfaf6]/35 text-center">
-                    <div class="flex flex-col items-center justify-center">
-                        <div class="text-[#C49A6C] mb-1"><i class="fa-solid fa-indian-rupee-sign text-base"></i></div>
-                        <span class="text-[9px] font-bold text-gray-600 uppercase tracking-wider font-sans leading-tight">Cash on Delivery</span>
-                    </div>
-                    <div class="flex flex-col items-center justify-center border-x border-gray-150">
-                        <div class="text-[#C49A6C] mb-1"><i class="fa-solid fa-arrows-rotate text-base"></i></div>
-                        <span class="text-[9px] font-bold text-gray-600 uppercase tracking-wider font-sans leading-tight">Easy 5 Days Return</span>
-                    </div>
-                    <div class="flex flex-col items-center justify-center">
-                        <div class="text-[#C49A6C] mb-1"><i class="fa-solid fa-truck text-base"></i></div>
-                        <span class="text-[9px] font-bold text-gray-600 uppercase tracking-wider font-sans leading-tight">Free Delivery</span>
-                    </div>
-                </div>
-
-                <!-- Delivery Estimation -->
-                <div class="bg-gray-50 border border-gray-100 rounded-xl py-3 px-4 text-center">
-                    <p class="text-xs text-gray-600 font-sans">Get it delivered in <strong class="text-gray-900">4-9 days</strong></p>
-                </div>
 
                 <!-- Size / Weight Selection -->
                 <div class="space-y-2">
@@ -184,6 +176,93 @@
                     </button>
                 </div>
 
+            </div>
+        </div>
+
+        <!-- Product Reviews Section -->
+        <div id="reviews-section" class="mt-20 border-t border-gray-150/70 pt-16">
+            <div class="max-w-5xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl font-serif font-bold text-center text-gray-900 mb-2">Customer Reviews</h2>
+                <p class="text-xs sm:text-sm text-gray-500 text-center mb-10 font-sans tracking-wide">Read what our customers are saying about {{ $product->name }}</p>
+
+                @if($product->reviews_count > 0)
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+                        
+                        <!-- Left: Reviews Summary Card (Span 4) -->
+                        <div class="md:col-span-4 bg-[#FAF6F0]/30 rounded-3xl border border-[#C49A6C]/10 p-6 text-center shadow-xs">
+                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4 font-sans">Average Rating</h3>
+                            <div class="text-5xl font-serif font-black text-gray-950 mb-2">
+                                {{ $product->average_rating }}
+                            </div>
+                            <div class="flex justify-center text-yellow-500 text-sm gap-1 mb-2">
+                                @for($i = 1; $i <= 5; $i++)
+                                    <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                                @endfor
+                            </div>
+                            <p class="text-xs text-gray-500 font-sans font-medium mb-6">Based on {{ $product->reviews_count }} {{ Str::plural('Review', $product->reviews_count) }}</p>
+
+                            <!-- Rating Distribution Bars -->
+                            <div class="space-y-2 text-left">
+                                @php
+                                    $distribution = [5 => 0, 4 => 0, 3 => 0, 2 => 0, 1 => 0];
+                                    foreach($product->activeReviews as $rev) {
+                                        if(isset($distribution[$rev->rating])) {
+                                            $distribution[$rev->rating]++;
+                                        }
+                                    }
+                                    $totalReviews = $product->reviews_count ?: 1;
+                                @endphp
+                                @foreach([5, 4, 3, 2, 1] as $stars)
+                                    @php
+                                        $count = $distribution[$stars];
+                                        $pct = ($count / $totalReviews) * 100;
+                                    @endphp
+                                    <div class="flex items-center text-xs">
+                                        <span class="w-10 text-gray-500 font-medium font-sans flex items-center justify-end mr-2">
+                                            {{ $stars }} <i class="fa-solid fa-star text-yellow-500 text-[10px] ml-1"></i>
+                                        </span>
+                                        <div class="flex-grow h-2 bg-gray-100 rounded-full overflow-hidden mr-3">
+                                            <div class="h-full bg-[#C49A6C] rounded-full" style="width: {{ $pct }}%"></div>
+                                        </div>
+                                        <span class="w-6 text-gray-400 text-right font-semibold font-sans">{{ $count }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Right: Reviews List (Span 8) -->
+                        <div class="md:col-span-8 space-y-4 max-h-[600px] overflow-y-auto pr-2">
+                            @foreach($product->activeReviews as $rev)
+                                <div class="border border-gray-150 rounded-2xl p-5 bg-white shadow-xs hover:border-[#C49A6C]/30 transition duration-300">
+                                    <div class="flex justify-between items-start gap-4 mb-2 flex-wrap sm:flex-nowrap">
+                                        <div>
+                                            <span class="block font-serif font-bold text-gray-900 text-sm leading-snug">{{ $rev->reviewer_name }}</span>
+                                            <div class="flex text-yellow-500 text-[9px] gap-0.5 mt-1">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    <i class="fa-{{ $i <= $rev->rating ? 'solid' : 'regular' }} fa-star"></i>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                        <span class="text-[10px] text-gray-400 font-sans tracking-wide">{{ $rev->created_at->format('M d, Y') }}</span>
+                                    </div>
+                                    <p class="text-xs sm:text-sm text-gray-650 leading-relaxed font-sans mt-3 italic">
+                                        "{{ $rev->review }}"
+                                    </p>
+                                </div>
+                            @endforeach
+                        </div>
+
+                    </div>
+                @else
+                    <!-- Empty State -->
+                    <div class="bg-[#FAF6F0]/20 border border-dashed border-[#C49A6C]/25 rounded-3xl p-10 text-center max-w-md mx-auto shadow-xs">
+                        <div class="bg-white/80 h-12 w-12 rounded-full border border-[#C49A6C]/10 flex items-center justify-center mx-auto mb-4 text-[#C49A6C] shadow-sm">
+                            <i class="fa-solid fa-star-half-stroke text-lg"></i>
+                        </div>
+                        <h3 class="font-serif font-bold text-gray-900 text-sm mb-1">No Reviews Yet</h3>
+                        <p class="text-xs text-gray-500 font-sans leading-relaxed">There are no reviews for this product yet. Share your experience with Vedic Botanica products once you receive your order!</p>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -344,6 +423,16 @@
                                     {{ $relProduct->name }}
                                 </a>
                             </h3>
+                            @if($relProduct->reviews_count > 0)
+                                <div class="flex items-center space-x-1 mt-1 text-yellow-500 text-[9px] sm:text-[10px]">
+                                    <div class="flex gap-0.5">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fa-{{ $i <= round($relProduct->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                                        @endfor
+                                    </div>
+                                    <span class="text-gray-400 font-semibold font-sans font-medium">({{ $relProduct->reviews_count }})</span>
+                                </div>
+                            @endif
                             <p class="text-[10px] sm:text-[11px] text-gray-400 line-clamp-1 font-sans font-normal leading-normal">{{ $relProduct->short_description }}</p>
                         </div>
 

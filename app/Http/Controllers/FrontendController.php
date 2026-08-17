@@ -14,22 +14,22 @@ class FrontendController extends Controller
     {
         $banners = Banner::where('is_active', true)->get();
         $testimonials = Testimonial::where('is_active', true)->get();
-        $bestSellers = Product::where('is_active', true)->where('is_bestseller', true)->latest()->take(8)->get();
-        $featuredProducts = Product::where('is_active', true)->where('is_featured', true)->latest()->take(8)->get();
-        $dealOfWeek = Product::where('is_active', true)->where('deal_of_week', true)->first();
+        $bestSellers = Product::where('is_active', true)->where('is_bestseller', true)->with('activeReviews')->latest()->take(8)->get();
+        $featuredProducts = Product::where('is_active', true)->where('is_featured', true)->with('activeReviews')->latest()->take(8)->get();
+        $dealOfWeek = Product::where('is_active', true)->where('deal_of_week', true)->with('activeReviews')->first();
         $categories = Category::where('is_active', true)->get();
 
         // Fallbacks if database has no flagged products, keeping the sections distinct
         if ($bestSellers->isEmpty()) {
-            $bestSellers = Product::where('is_active', true)->where('is_featured', false)->latest()->take(8)->get();
+            $bestSellers = Product::where('is_active', true)->where('is_featured', false)->with('activeReviews')->latest()->take(8)->get();
             if ($bestSellers->isEmpty()) {
-                $bestSellers = Product::where('is_active', true)->latest()->take(8)->get();
+                $bestSellers = Product::where('is_active', true)->with('activeReviews')->latest()->take(8)->get();
             }
         }
         if ($featuredProducts->isEmpty()) {
-            $featuredProducts = Product::where('is_active', true)->where('is_bestseller', false)->latest()->take(8)->get();
+            $featuredProducts = Product::where('is_active', true)->where('is_bestseller', false)->with('activeReviews')->latest()->take(8)->get();
             if ($featuredProducts->isEmpty()) {
-                $featuredProducts = Product::where('is_active', true)->latest()->take(8)->get();
+                $featuredProducts = Product::where('is_active', true)->with('activeReviews')->latest()->take(8)->get();
             }
         }
 
@@ -43,7 +43,7 @@ class FrontendController extends Controller
 
     public function shop(Request $request)
     {
-        $query = Product::where('is_active', true);
+        $query = Product::where('is_active', true)->with('activeReviews');
 
         // Filter by search query
         if ($request->has('search') && $request->input('search') != '') {
@@ -126,8 +126,13 @@ class FrontendController extends Controller
 
     public function product($slug)
     {
-        $product = Product::where('slug', $slug)->where('is_active', true)->firstOrFail();
-        $relatedProducts = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->take(4)->get();
+        $product = Product::where('slug', $slug)->where('is_active', true)->with(['category', 'activeReviews'])->firstOrFail();
+        $relatedProducts = Product::where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->where('is_active', true)
+            ->with('activeReviews')
+            ->take(4)
+            ->get();
         return view('frontend.product', compact('product', 'relatedProducts'));
     }
 

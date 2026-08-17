@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\BannerController as AdminBannerController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Admin\CouponController as AdminCouponController;
+use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 
 Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
@@ -69,6 +70,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('categories', AdminCategoryController::class);
     Route::resource('banners', AdminBannerController::class);
     Route::resource('testimonials', AdminTestimonialController::class);
+    Route::resource('reviews', AdminReviewController::class);
     // Route::resource('coupons', AdminCouponController::class);
     
     // Orders

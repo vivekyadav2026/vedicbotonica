@@ -34,6 +34,9 @@ class User extends Authenticatable implements FilamentUser
         'city',
         'state',
         'zip',
+        'google_id',
+        'google_token',
+        'google_refresh_token',
     ];
 
     /**

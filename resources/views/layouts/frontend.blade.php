@@ -46,24 +46,22 @@
 
     <!-- Sticky Main Header -->
     <header class="bg-white sticky top-0 z-50 border-b border-[#FAF6F0] shadow-[0_2px_15px_rgba(0,0,0,0.02)] transition-all duration-300">
-        <!-- Desktop Header (Standard: Left logo, centered nav, right icons) -->
+        <!-- Desktop Header (Centered Logo with Explore Menu & Utility Icons) -->
         <div class="hidden md:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 relative">
-                <!-- Left: Logo -->
-                <div class="flex-shrink-0 flex items-center transition-transform duration-300 hover:scale-102">
+                <!-- Left: Explore Button -->
+                <button @click="mobileMenuOpen = true" class="flex items-center gap-2.5 text-xs font-bold font-sans uppercase tracking-[0.2em] text-gray-700 hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer group">
+                    <i class="fa-solid fa-bars text-sm group-hover:scale-110 transition-transform"></i>
+                    <span>Explore</span>
+                </button>
+
+                <!-- Center: Logo -->
+                <div class="absolute left-1/2 -translate-x-1/2 flex-shrink-0 flex items-center transition-transform duration-300 hover:scale-102 z-10">
                     <a href="{{ url('/') }}" class="flex flex-col items-center">
                         <img src="{{ asset('images/logo.png') }}" alt="Vedic Botanica Logo" class="h-14 w-14 object-contain bg-white rounded-full p-1 border border-[#C49A6C] shadow-xs">
                         <span class="logo-text text-[9px] font-bold text-gray-800 tracking-[0.25em] uppercase mt-1.5 leading-none">Vedic Botanica</span>
                     </a>
                 </div>
-
-                <!-- Center: Navigation Links -->
-                <nav class="flex items-center space-x-8 lg:space-x-10 absolute left-1/2 -translate-x-1/2">
-                    <a href="{{ url('/') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
-                    <a href="{{ url('/about') }}" class="nav-link {{ request()->is('about') ? 'active' : '' }}">About Us</a>
-                    <a href="{{ url('/shop') }}" class="nav-link {{ request()->is('shop') ? 'active' : '' }}">Shop</a>
-                    <a href="{{ url('/contact') }}" class="nav-link {{ request()->is('contact') ? 'active' : '' }}">Contact Us</a>
-                </nav>
 
                 <!-- Right: Icons -->
                 <div class="flex items-center gap-2">
@@ -181,9 +179,9 @@
         </div>
     </header>
 
-    <!-- Mobile Drawer Menu Overlay -->
+    <!-- Sidebar Drawer Menu Overlay -->
     <div x-show="mobileMenuOpen" 
-         class="fixed inset-0 z-50 flex md:hidden" 
+         class="fixed inset-0 z-50 flex" 
          role="dialog" aria-modal="true" 
          style="display: none;">
         
@@ -316,12 +314,32 @@
                     </p>
                     <h4 class="text-md font-bold mb-3 font-serif">Follow Us</h4>
                     <div class="flex space-x-3">
-                        <a href="https://www.facebook.com/share/19Dfpv7AfK" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-facebook-f text-sm"></i>
-                        </a>
-                        <a href="https://www.instagram.com/vedicbotanica" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
-                            <i class="fa-brands fa-instagram text-sm"></i>
-                        </a>
+                        @php
+                            $facebookUrl = $siteSettings['facebook_url'] ?? 'https://www.facebook.com/share/19Dfpv7AfK';
+                            $instagramUrl = $siteSettings['instagram_url'] ?? 'https://www.instagram.com/vedicbotanica';
+                            $twitterUrl = $siteSettings['twitter_url'] ?? '';
+                            $youtubeUrl = $siteSettings['youtube_url'] ?? '';
+                        @endphp
+                        @if(!empty($facebookUrl))
+                            <a href="{{ $facebookUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-facebook-f text-sm"></i>
+                            </a>
+                        @endif
+                        @if(!empty($instagramUrl))
+                            <a href="{{ $instagramUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-instagram text-sm"></i>
+                            </a>
+                        @endif
+                        @if(!empty($twitterUrl))
+                            <a href="{{ $twitterUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-x-twitter text-sm"></i>
+                            </a>
+                        @endif
+                        @if(!empty($youtubeUrl))
+                            <a href="{{ $youtubeUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-youtube text-sm"></i>
+                            </a>
+                        @endif
                     </div>
                 </div>
 

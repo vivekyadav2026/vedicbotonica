@@ -46,6 +46,7 @@
                         <th class="px-6 py-4">Category</th>
                         <th class="px-6 py-4">Price</th>
                         <th class="px-6 py-4">Stock</th>
+                        <th class="px-6 py-4">Reviews</th>
                         <th class="px-6 py-4">Badges</th>
                         <th class="px-6 py-4">Status</th>
                         <th class="px-6 py-4 text-right">Actions</th>
@@ -80,6 +81,16 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4">
+                                @if($product->reviews_count > 0)
+                                    <a href="{{ route('admin.reviews.index', ['product_id' => $product->id]) }}" class="flex items-center text-[#C49A6C] hover:underline font-semibold text-xs whitespace-nowrap">
+                                        <i class="fa-solid fa-star text-yellow-500 mr-1"></i>
+                                        <span>{{ $product->average_rating }} ({{ $product->reviews_count }})</span>
+                                    </a>
+                                @else
+                                    <span class="text-xs text-slate-400 font-medium">No reviews</span>
+                                @endif
+                            </td>
+                            <td class="px-6 py-4">
                                 <div class="flex flex-wrap gap-1">
                                     @if($product->is_featured)
                                         <span class="px-1.5 py-0.5 text-[9px] font-bold bg-amber-50 text-amber-700 rounded border border-amber-100">Featured</span>
@@ -101,6 +112,9 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex justify-end items-center space-x-2">
+                                    <a href="{{ route('admin.reviews.index', ['product_id' => $product->id]) }}" class="p-2 bg-slate-100 hover:bg-[#C49A6C] hover:text-white rounded-lg text-[#C49A6C] transition" title="Manage Reviews">
+                                        <i class="fa-solid fa-star"></i>
+                                    </a>
                                     <a href="{{ route('admin.products.edit', $product->id) }}" class="p-2 bg-slate-100 hover:bg-[#C49A6C] hover:text-white rounded-lg text-slate-600 transition" title="Edit">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
