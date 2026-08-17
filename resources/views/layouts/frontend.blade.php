@@ -41,7 +41,7 @@
     
     <!-- Premium Top Announcement Bar -->
     <div class="bg-[#FAF6F0] text-[#b0875b] py-2 text-center text-[10px] sm:text-xs font-bold tracking-widest uppercase border-b border-gray-100/70">
-        <span>✨ Free Shipping Nationwide • 100% Natural Vedic Formulations ✨</span>
+        <span>✨ Free Shipping Nationwide • Premium Natural Vedic Formulations ✨</span>
     </div>
 
     <!-- Sticky Main Header -->

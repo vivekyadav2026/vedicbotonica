@@ -30,7 +30,7 @@
             <div x-show="activeTab === 'about'" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0">
                 <h3 class="text-xl sm:text-2xl font-serif font-bold text-gray-900 mb-2">Vedic Botanica</h3>
                 <p class="text-primary font-serif italic text-sm mb-4" style="color: #C49A6C;">“Where Nature Meets Tradition” &bull; Purity, Wellness & Spiritual Harmony</p>
-                <p class="text-sm sm:text-base">Vedic Botanica is a sanctuary of sacred aromas and holistic wellness, born from the deep desire to reconnect modern lives with the timeless, pure essence of Ayurvedic traditions. We craft premium, 100% natural, and charcoal-free wellness formulations that cleanse your space, soothe your mind, and elevate your spiritual consciousness. By uniting ancient Vedic wisdom with impeccable modern standards, we bring the pure, unadulterated healing power of Mother Nature straight into your sacred spaces.</p>
+                <p class="text-sm sm:text-base">Vedic Botanica is a sanctuary of sacred aromas and holistic wellness, born from the deep desire to reconnect modern lives with the timeless, pure essence of Ayurvedic traditions. We craft premium, natural, and charcoal-free wellness formulations that cleanse your space, soothe your mind, and elevate your spiritual consciousness. By uniting ancient Vedic wisdom with impeccable modern standards, we bring the pure, unadulterated healing power of Mother Nature straight into your sacred spaces.</p>
             </div>
 
             <!-- Our Story Tab -->
@@ -54,7 +54,7 @@
             <div class="flex flex-col gap-4 sm:gap-8">
                 <div class="bg-emerald-50 border border-emerald-250 rounded-2xl p-5 sm:p-6 h-36 sm:h-44 flex items-center justify-center shadow-xs">
                     <div class="text-center">
-                        <h4 class="font-bold font-serif text-emerald-900 text-base sm:text-lg mb-1">100% PURE & CERTIFIED</h4>
+                        <h4 class="font-bold font-serif text-emerald-900 text-base sm:text-lg mb-1">PURE & CERTIFIED</h4>
                         <p class="text-[10px] text-emerald-700 font-sans tracking-wide uppercase">Lab Tested & Certified</p>
                         <p class="text-xs sm:text-sm mt-2 sm:mt-3 text-gray-700 font-sans">Tested As: <strong>100% Charcoal-Free & Non-Toxic Natural Dhoop</strong></p>
                     </div>

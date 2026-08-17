@@ -198,7 +198,7 @@
                     <div class="border border-gray-150 rounded-2xl bg-[#FAF6F0]/20 overflow-hidden transition-all duration-300">
                         <button @click="activeFaq === 1 ? activeFaq = null : activeFaq = 1" 
                                 class="w-full flex justify-between items-center py-4.5 px-5 sm:px-6 text-left focus:outline-none cursor-pointer">
-                            <span class="text-sm font-serif font-bold text-gray-900">Is this product 100% natural and safe to use daily?</span>
+                            <span class="text-sm font-serif font-bold text-gray-900">Is this product natural and safe to use daily?</span>
                             <span class="text-[#C49A6C] transition-transform duration-300" :class="activeFaq === 1 ? 'rotate-180' : ''">
                                 <i class="fa-solid fa-chevron-down text-xs"></i>
                             </span>
@@ -208,7 +208,7 @@
                              x-transition:enter-start="opacity-0 -translate-y-2"
                              x-transition:enter-end="opacity-100 translate-y-0"
                              class="pb-5 px-5 sm:px-6 text-xs sm:text-sm text-gray-650 leading-relaxed font-sans border-t border-gray-100/50 pt-3">
-                            Yes, absolutely. Our products are formulated using 100% natural, pure cow dung base mixed with organic herbs, natural resins, and premium essential oils. They are completely free from charcoal, phthalates, and harmful chemicals, making them safe for daily home use, meditation, and children.
+                            Yes, absolutely. Our products are formulated using natural, pure cow dung base mixed with organic herbs, natural resins, and premium essential oils. They are completely free from charcoal, phthalates, and harmful chemicals, making them safe for daily home use, meditation, and children.
                         </div>
                     </div>
 
