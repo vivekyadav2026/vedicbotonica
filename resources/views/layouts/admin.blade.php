@@ -7,6 +7,10 @@
 
     <title>Admin Dashboard - {{ config('app.name', 'Vedic Botanica') }}</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}?v=2" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico') }}?v=2" type="image/x-icon">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,6 +67,20 @@
                    :class="sidebarCollapsed ? 'lg:justify-center lg:space-x-0' : 'space-x-3.5'">
                     <i class="fa-solid fa-box w-5 text-center flex-shrink-0"></i>
                     <span :class="sidebarCollapsed ? 'lg:hidden' : 'inline'">Products</span>
+                </a>
+
+                <a href="{{ route('admin.combos.index') }}" 
+                   class="flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('admin.combos.*') ? 'bg-[#C49A6C] text-white shadow-lg shadow-[#C49A6C]/25' : 'hover:bg-slate-800 hover:text-white' }}"
+                   :class="sidebarCollapsed ? 'lg:justify-center lg:space-x-0' : 'space-x-3.5'">
+                    <i class="fa-solid fa-cubes w-5 text-center flex-shrink-0"></i>
+                    <span :class="sidebarCollapsed ? 'lg:hidden' : 'inline'">Combo Packs</span>
+                </a>
+
+                <a href="{{ route('admin.returns.index') }}" 
+                   class="flex items-center px-4 py-3 rounded-xl text-sm font-semibold transition-all {{ request()->routeIs('admin.returns.*') ? 'bg-[#C49A6C] text-white shadow-lg shadow-[#C49A6C]/25' : 'hover:bg-slate-800 hover:text-white' }}"
+                   :class="sidebarCollapsed ? 'lg:justify-center lg:space-x-0' : 'space-x-3.5'">
+                    <i class="fa-solid fa-rotate-left w-5 text-center flex-shrink-0"></i>
+                    <span :class="sidebarCollapsed ? 'lg:hidden' : 'inline'">Return Requests</span>
                 </a>
 
                 <a href="{{ route('admin.reviews.index') }}" 
@@ -228,6 +246,6 @@
         </div>
 
     </div>
-
+    @stack('scripts')
 </body>
 </html>

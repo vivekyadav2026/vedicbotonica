@@ -7,6 +7,10 @@
 
     <title>Vedic Botanica - @yield('title', 'Ecommerce')</title>
 
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +45,7 @@
     
     <!-- Premium Top Announcement Bar -->
     <div class="bg-[#FAF6F0] text-[#b0875b] py-2 text-center text-[10px] sm:text-xs font-bold tracking-widest uppercase border-b border-gray-100/70">
-        <span>✨ Free Shipping Nationwide • <a href="{{ route('bundle.builder') }}" class="underline hover:text-gray-900 transition-colors">Build Custom Box (₹799)</a> • Premium Natural Vedic Formulations ✨</span>
+        <span>✨ Free Shipping Nationwide • <a href="{{ route('bundle.builder') }}" class="underline hover:text-gray-900 transition-colors">Shop Premium Combos & Save</a> • Premium Natural Vedic Formulations ✨</span>
     </div>
 
     <!-- Sticky Main Header -->

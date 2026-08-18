@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderItem extends Model
+class ReturnRequest extends Model
 {
     protected $guarded = [];
 
@@ -13,13 +13,13 @@ class OrderItem extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function product()
+    public function user()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function components()
+    public function items()
     {
-        return $this->hasMany(OrderItemComponent::class);
+        return $this->hasMany(ReturnRequestItem::class);
     }
 }

@@ -67,7 +67,7 @@
             </div>
 
             <!-- Stock Quantity -->
-            <div class="space-y-1.5">
+            <div class="space-y-1.5" id="quantity-container">
                 <label class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Stock Quantity *</label>
                 <input type="number" name="quantity" min="0" value="{{ old('quantity', 100) }}" required placeholder="e.g. 100"
                        class="w-full border border-slate-200 focus:ring-1 focus:ring-[#C49A6C] focus:border-[#C49A6C] rounded-xl text-sm px-4 py-2.5">
@@ -196,7 +196,6 @@
                         Corrugated Sticks (147g)
                     </button>
                 </div>
-            </div>
         </div>
 
         <!-- Submit Buttons -->

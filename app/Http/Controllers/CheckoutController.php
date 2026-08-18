@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -22,6 +23,12 @@ class CheckoutController extends Controller
 
         if (empty($cart)) {
             return redirect()->route('cart.index')->with('warning', 'Your cart is empty! Please add products before checking out.');
+        }
+
+        // Validate combined/combo stock requirements
+        $errors = app(\App\Services\ComboService::class)->validateCartStock($cart);
+        if (!empty($errors)) {
+            return redirect()->route('cart.index')->with('error', implode(' ', $errors));
         }
 
         $subtotal = 0;
@@ -78,63 +85,81 @@ class CheckoutController extends Controller
             $subtotal += $item['price'] * $item['quantity'];
         }
 
+        // Validate stock requirements before writing order
+        $errors = app(\App\Services\ComboService::class)->validateCartStock($cart);
+        if (!empty($errors)) {
+            return redirect()->route('cart.index')->with('error', implode(' ', $errors));
+        }
+
         // Generate a unique order number
         $orderNumber = 'ORD-' . date('Ymd') . '-' . strtoupper(Str::random(4));
 
-        // Create Order
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'order_number' => $orderNumber,
-            'total_amount' => $subtotal,
-            'status' => 'pending',
-            'payment_status' => 'pending',
-            'payment_method' => $validated['payment_method'],
-            'notes' => $validated['notes'] ?? null,
-            'shipping_name' => $validated['shipping_name'],
-            'shipping_email' => $validated['shipping_email'],
-            'shipping_phone' => $validated['shipping_phone'],
-            'shipping_address' => $fullAddress,
-            'shipping_city' => $validated['shipping_city'],
-            'shipping_state' => $validated['shipping_state'],
-            'shipping_zip' => $validated['shipping_zip'],
-        ]);
+        DB::beginTransaction();
 
-        // Create Order Items
-        foreach ($cart as $productId => $item) {
-            if (str_starts_with($productId, 'bundle_')) {
-                // Parent virtual bundle item
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => null,
-                    'product_name' => $item['name'],
-                    'quantity' => $item['quantity'],
-                    'unit_price' => $item['price'],
-                    'total_price' => $item['price'] * $item['quantity'],
-                ]);
+        try {
+            // Create Order
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'order_number' => $orderNumber,
+                'total_amount' => $subtotal,
+                'status' => 'pending',
+                'payment_status' => 'pending',
+                'payment_method' => $validated['payment_method'],
+                'notes' => $validated['notes'] ?? null,
+                'shipping_name' => $validated['shipping_name'],
+                'shipping_email' => $validated['shipping_email'],
+                'shipping_phone' => $validated['shipping_phone'],
+                'shipping_address' => $fullAddress,
+                'shipping_city' => $validated['shipping_city'],
+                'shipping_state' => $validated['shipping_state'],
+                'shipping_zip' => $validated['shipping_zip'],
+            ]);
 
-                // Individual constituent bundle items
-                if (isset($item['bundle_items']) && is_array($item['bundle_items'])) {
-                    foreach ($item['bundle_items'] as $subItem) {
-                        OrderItem::create([
-                            'order_id' => $order->id,
-                            'product_id' => $subItem['id'],
-                            'product_name' => '[Bundle Item] ' . $subItem['name'],
-                            'quantity' => $subItem['quantity'] * $item['quantity'],
-                            'unit_price' => 0.00,
-                            'total_price' => 0.00,
-                        ]);
+            // Create Order Items
+            foreach ($cart as $productId => $item) {
+                if (str_starts_with($productId, 'bundle_')) {
+                    // Parent virtual bundle item
+                    $orderItem = OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => null,
+                        'product_name' => $item['name'],
+                        'quantity' => $item['quantity'],
+                        'unit_price' => $item['price'],
+                        'total_price' => $item['price'] * $item['quantity'],
+                    ]);
+
+                    // Individual constituent bundle items
+                    if (isset($item['bundle_items']) && is_array($item['bundle_items'])) {
+                        foreach ($item['bundle_items'] as $subItem) {
+                            OrderItem::create([
+                                'order_id' => $order->id,
+                                'product_id' => $subItem['id'],
+                                'product_name' => '[Bundle Item] ' . $subItem['name'],
+                                'quantity' => $subItem['quantity'] * $item['quantity'],
+                                'unit_price' => 0.00,
+                                'total_price' => 0.00,
+                            ]);
+                        }
                     }
+                } else {
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => $productId,
+                        'product_name' => $item['name'],
+                        'quantity' => $item['quantity'],
+                        'unit_price' => $item['price'],
+                        'total_price' => $item['price'] * $item['quantity'],
+                    ]);
                 }
-            } else {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $productId,
-                    'product_name' => $item['name'],
-                    'quantity' => $item['quantity'],
-                    'unit_price' => $item['price'],
-                    'total_price' => $item['price'] * $item['quantity'],
-                ]);
             }
+
+            // Deduct inventory atomically (locks product/component rows)
+            app(\App\Services\ComboService::class)->deductStock($order);
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('checkout.index')->with('error', 'Checkout failed: ' . $e->getMessage());
         }
 
         // Check if payment method is Razorpay
@@ -196,6 +221,9 @@ class CheckoutController extends Controller
                 }
                 session()->put('cart', $cart);
 
+                // Restore stock before canceling order
+                app(\App\Services\ComboService::class)->restoreStock($order);
+
                 // Mark order as cancelled
                 $order->update([
                     'status'         => 'cancelled',
@@ -251,6 +279,9 @@ class CheckoutController extends Controller
                 'status' => 'failed',
                 'notes' => 'Razorpay Signature Verification Failed: ' . $e->getMessage()
             ]);
+
+            // Restore stock on payment verification failure
+            app(\App\Services\ComboService::class)->restoreStock($order);
 
             return redirect()->route('cart.index')->with('error', 'Payment verification failed: ' . $e->getMessage());
         }
@@ -311,6 +342,8 @@ class CheckoutController extends Controller
                         'status'         => 'failed',
                         'notes'          => 'Payment failed via Razorpay webhook: ' . ($paymentEntity['error_description'] ?? 'unknown'),
                     ]);
+                    // Restore stock on failed payment webhook
+                    app(\App\Services\ComboService::class)->restoreStock($order);
                 }
             }
         }

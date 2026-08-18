@@ -246,36 +246,138 @@
             @if($categories->isEmpty())
                 <p class="text-gray-400 text-sm font-sans text-center">No categories found.</p>
             @else
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
-                @foreach($categories as $category)
-                @php
-                    $catImage = $category->image ? asset($category->image) : asset('images/premium_dhoop_product.png');
-                    $catLink = '/shop?categories[]=' . $category->id;
-                @endphp
-                <a href="{{ $catLink }}" class="group relative bg-white border border-[#C49A6C]/20 rounded-3xl p-3 sm:p-4 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(196,154,108,0.15)] hover:border-[#C49A6C] hover:-translate-y-1.5 flex flex-col h-full overflow-hidden">
-                    <!-- Image container: Aspect ratio filled completely to remove white gaps -->
-                    <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-gray-150 shadow-xs">
-                        <img src="{{ $catImage }}" alt="{{ $category->name }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108">
-                    </div>
+            <!-- Category Carousel Slider -->
+            <div x-data="{ 
+                activeDot: 0,
+                totalDots: {{ count($categories) }},
+                scrollLeft() { $refs.slider.scrollBy({ left: -300, behavior: 'smooth' }) },
+                scrollRight() { $refs.slider.scrollBy({ left: 300, behavior: 'smooth' }) },
+                scrollToDot(index) {
+                    const slider = this.$refs.slider;
+                    const cards = slider.querySelectorAll('.category-slide-card');
+                    if (cards.length === 0) return;
                     
-                    <!-- Content details matching product cards -->
-                    <div class="pt-3 sm:pt-4 text-left flex-1 flex flex-col justify-between">
-                        <div class="space-y-1">
-                            <span class="text-[9px] sm:text-[10px] text-[#C49A6C] uppercase font-bold tracking-widest block font-serif">Sacred Category</span>
-                            <h3 class="text-xs sm:text-sm font-serif font-bold text-gray-900 group-hover:text-[#C49A6C] transition-colors leading-snug line-clamp-1">
-                                {{ $category->name }}
-                            </h3>
-                        </div>
-                        
-                        <div class="pt-2 flex items-center justify-between border-t border-[#FAF6F0] mt-3">
-                            <span class="text-[10px] font-sans font-bold text-[#C49A6C] uppercase tracking-wider group-hover:translate-x-1.5 transition-transform duration-300">
-                                Explore <i class="fa-solid fa-arrow-right ml-1 text-[8px]"></i>
-                            </span>
-                        </div>
+                    const firstCard = cards[0];
+                    const secondCard = cards[1];
+                    let cardWidth = firstCard.offsetWidth;
+                    if (secondCard) {
+                        cardWidth = secondCard.getBoundingClientRect().left - firstCard.getBoundingClientRect().left;
+                    } else {
+                        cardWidth += 16;
+                    }
+                    
+                    slider.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+                    this.activeDot = index;
+                },
+                updateActiveDot() {
+                    const slider = this.$refs.slider;
+                    const cards = slider.querySelectorAll('.category-slide-card');
+                    if (cards.length === 0) return;
+                    
+                    const firstCard = cards[0];
+                    const secondCard = cards[1];
+                    let cardWidth = firstCard.offsetWidth;
+                    if (secondCard) {
+                        cardWidth = secondCard.getBoundingClientRect().left - firstCard.getBoundingClientRect().left;
+                    } else {
+                        cardWidth += 16;
+                    }
+                    
+                    this.activeDot = Math.min(
+                        this.totalDots - 1,
+                        Math.max(0, Math.round(slider.scrollLeft / cardWidth))
+                    );
+                }
+            }">
+                <!-- Relative Wrapper for Slider and Arrows to ensure perfect absolute positioning alignment -->
+                <div class="relative" style="position: relative;">
+                    <!-- Left Navigation Button -->
+                    <button @click="scrollLeft()" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-[#C49A6C] hover:text-white text-gray-700 w-11 h-11 rounded-full shadow-lg border border-[#C49A6C]/10 flex items-center justify-center transition cursor-pointer -ml-4 sm:-ml-6 focus:outline-none">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+
+                    <!-- Slider Container -->
+                    <div x-ref="slider" @scroll.debounce.50ms="updateActiveDot()" class="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth scrollbar-hide pb-6 pt-2">
+                        @foreach($categories as $category)
+                        @php
+                            $catImage = $category->image ? asset($category->image) : asset('images/premium_dhoop_product.png');
+                            $catLink = '/shop?categories[]=' . $category->id;
+                        @endphp
+                        <a href="{{ $catLink }}" class="category-slide-card snap-start group relative bg-white border border-[#C49A6C]/20 rounded-3xl p-3 sm:p-4 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(196,154,108,0.15)] hover:border-[#C49A6C] hover:-translate-y-1.5 flex flex-col overflow-hidden">
+                            <!-- Image container: exact original aspect ratio -->
+                            <div class="category-slide-image-wrapper relative w-full rounded-2xl overflow-hidden border border-gray-150 shadow-xs">
+                                <img src="{{ $catImage }}" alt="{{ $category->name }}" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108">
+                            </div>
+                            
+                            <!-- Content details matching original cards -->
+                            <div class="pt-3 sm:pt-4 text-left flex-1 flex flex-col justify-between">
+                                <div class="space-y-1">
+                                    <span class="text-[9px] sm:text-[10px] text-[#C49A6C] uppercase font-bold tracking-widest block font-serif">Sacred Category</span>
+                                    <h3 class="text-xs sm:text-sm font-serif font-bold text-gray-900 group-hover:text-[#C49A6C] transition-colors leading-snug line-clamp-1">
+                                        {{ $category->name }}
+                                    </h3>
+                                </div>
+                                
+                                <div class="pt-2 flex items-center justify-between border-t border-[#FAF6F0] mt-3">
+                                    <span class="text-[10px] font-sans font-bold text-[#C49A6C] uppercase tracking-wider group-hover:translate-x-1.5 transition-transform duration-300">
+                                        Explore <i class="fa-solid fa-arrow-right ml-1 text-[8px]"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
                     </div>
-                </a>
-                @endforeach
+
+                    <!-- Right Navigation Button -->
+                    <button @click="scrollRight()" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white/95 hover:bg-[#C49A6C] hover:text-white text-gray-700 w-11 h-11 rounded-full shadow-lg border border-[#C49A6C]/10 flex items-center justify-center transition cursor-pointer -mr-4 sm:-mr-6 focus:outline-none">
+                        <i class="fa-solid fa-chevron-right text-sm"></i>
+                    </button>
+                </div>
+
+                <!-- Navigation Dots Indicator -->
+                <div class="flex justify-center space-x-2 mt-4 pb-2">
+                    @foreach($categories as $index => $cat)
+                        <button @click="scrollToDot({{ $index }})" 
+                                class="h-2 rounded-full transition-all duration-300 focus:outline-none cursor-pointer"
+                                :class="activeDot === {{ $index }} ? 'w-6 bg-[#C49A6C]' : 'w-2 bg-gray-200 hover:bg-[#C49A6C]/50'"
+                                aria-label="Go to slide {{ $index + 1 }}">
+                        </button>
+                    @endforeach
+                </div>
             </div>
+
+            <!-- Hide Scrollbar & Define Card Size Styles -->
+            <style>
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
+                }
+                .scrollbar-hide {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+                .category-slide-card {
+                    flex: 0 0 165px;
+                    width: 165px;
+                    min-width: 165px;
+                }
+                .category-slide-image-wrapper {
+                    aspect-ratio: 4 / 3;
+                }
+                @media (min-width: 640px) {
+                    .category-slide-card {
+                        flex: 0 0 240px;
+                        width: 240px;
+                        min-width: 240px;
+                    }
+                }
+                @media (min-width: 1024px) {
+                    .category-slide-card {
+                        flex: 0 0 280px;
+                        width: 280px;
+                        min-width: 280px;
+                    }
+                }
+            </style>
             @endif
         </div>
     </div>

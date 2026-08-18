@@ -97,25 +97,91 @@
                 <!-- Form & Actions -->
                 <form class="space-y-3" id="product-detail-form">
                     @csrf
-                    <div class="flex gap-3">
-                        <!-- Qty Selector -->
-                        <div class="flex items-center border border-gray-250 rounded-xl bg-white overflow-hidden shadow-xs h-12 w-32 justify-between flex-shrink-0">
-                            <button type="button" id="qty-minus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-minus text-xs"></i></button>
-                            <input type="number" id="qty-input" name="quantity" class="w-12 h-full text-center border-none focus:ring-0 text-sm font-semibold text-gray-955 focus:outline-none bg-transparent" value="1" min="1" max="{{ $product->quantity }}">
-                            <button type="button" id="qty-plus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></button>
+                    @if($product->quantity <= 0)
+                        <!-- Out of stock display -->
+                        <button type="button" disabled class="w-full bg-gray-100 border border-gray-200 text-gray-400 font-serif font-bold h-12 rounded-xl tracking-wider text-xs uppercase cursor-not-allowed flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Temporarily Out of Stock</span>
+                        </button>
+                    @else
+                        <div class="flex gap-3">
+                            <!-- Qty Selector -->
+                            <div class="flex items-center border border-gray-250 rounded-xl bg-white overflow-hidden shadow-xs h-12 w-32 justify-between flex-shrink-0">
+                                <button type="button" id="qty-minus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-minus text-xs"></i></button>
+                                <input type="number" id="qty-input" name="quantity" class="w-12 h-full text-center border-none focus:ring-0 text-sm font-semibold text-gray-955 focus:outline-none bg-transparent" value="1" min="1" max="{{ $product->quantity }}">
+                                <button type="button" id="qty-plus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></button>
+                            </div>
+                            
+                            <!-- Add to Bag -->
+                            <button type="button" id="detail-add-to-cart" data-product-id="{{ $product->id }}" class="flex-grow bg-white border border-black hover:bg-gray-50 text-gray-900 font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer active:scale-97 flex items-center justify-center gap-2">
+                                Add to bag
+                            </button>
                         </div>
                         
-                        <!-- Add to Bag -->
-                        <button type="button" id="detail-add-to-cart" data-product-id="{{ $product->id }}" class="flex-grow bg-white border border-black hover:bg-gray-50 text-gray-900 font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer active:scale-97 flex items-center justify-center gap-2">
-                            Add to bag
+                        <!-- Buy Now -->
+                        <button type="button" id="detail-buy-now" data-product-id="{{ $product->id }}" class="w-full bg-black hover:bg-gray-950 text-white font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer shadow-md active:scale-97 flex items-center justify-center gap-2">
+                            Buy Now
                         </button>
-                    </div>
-                    
-                    <!-- Buy Now -->
-                    <button type="button" id="detail-buy-now" data-product-id="{{ $product->id }}" class="w-full bg-black hover:bg-gray-950 text-white font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer shadow-md active:scale-97 flex items-center justify-center gap-2">
-                        Buy Now
-                    </button>
+                    @endif
                 </form>
+
+                @if($product->is_combo)
+                    <!-- What's Inside This Combo? Section -->
+                    <div class="border border-[#C49A6C]/25 bg-[#FAF6F0]/30 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+                        <div class="flex items-center justify-between pb-3 border-b border-[#C49A6C]/15">
+                            <h3 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-box-open text-[#C49A6C]"></i>
+                                <span>What's Inside This Combo?</span>
+                            </h3>
+                            <span class="bg-[#C49A6C] text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded-md tracking-wider font-sans">
+                                Special Bundle
+                            </span>
+                        </div>
+
+                        <!-- Included Products List -->
+                        <div class="space-y-3">
+                            @foreach($product->comboItems as $item)
+                                @if($item->product)
+                                    @php
+                                        $childImages = json_decode($item->product->images);
+                                        $childImg = ($childImages && count($childImages) > 0) ? asset($childImages[0]) : asset('images/premium_dhoop_product.png');
+                                        $childPrice = $item->product->sale_price ?: $item->product->price;
+                                    @endphp
+                                    <div class="flex items-center justify-between bg-white/70 p-3 rounded-xl border border-gray-100 gap-3">
+                                        <div class="flex items-center space-x-3 min-w-0 flex-1">
+                                            <img src="{{ $childImg }}" alt="{{ $item->product->name }}" class="w-10 h-10 object-contain border rounded-lg p-0.5 bg-[#FAF6F0]/30 flex-shrink-0">
+                                            <div class="min-w-0">
+                                                <a href="/product/{{ $item->product->slug }}" class="text-xs sm:text-sm font-semibold text-gray-800 hover:text-[#C49A6C] transition truncate block">{{ $item->product->name }}</a>
+                                                <span class="text-[10px] text-gray-400 font-medium font-sans">Value: ₹{{ number_format($childPrice, 2) }} each</span>
+                                            </div>
+                                        </div>
+                                        <div class="text-xs font-bold text-[#C49A6C] whitespace-nowrap bg-[#FAF6F0] border border-[#C49A6C]/10 px-2.5 py-1 rounded-lg font-sans">
+                                            × {{ $item->quantity }}
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        <!-- Pricing Summary math -->
+                        <div class="pt-3 border-t border-[#C49A6C]/15 space-y-2 text-xs font-sans">
+                            <div class="flex justify-between text-gray-500 font-medium">
+                                <span>Individual Product Total:</span>
+                                <span>₹{{ number_format($product->individual_value, 2) }}</span>
+                            </div>
+                            <div class="flex justify-between text-gray-900 font-bold">
+                                <span>Combo Selling Price:</span>
+                                <span>₹{{ number_format($product->sale_price ?: $product->price, 2) }}</span>
+                            </div>
+                            @if($product->savings > 0)
+                                <div class="flex justify-between text-emerald-700 font-bold bg-emerald-50 border border-emerald-100/55 p-2 rounded-xl text-center">
+                                    <span>You Save:</span>
+                                    <span>₹{{ number_format($product->savings, 2) }} ({{ $product->discount_percent }}% OFF)</span>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                @endif
 
                 <!-- Product Info Table -->
                 <div class="border border-gray-150 rounded-2xl overflow-hidden bg-white shadow-xs">

@@ -37,6 +37,19 @@
                                 <div>
                                     <span class="block font-semibold text-slate-800">{{ $item->product_name }}</span>
                                     <span class="block text-xs text-slate-400 mt-1">Quantity: {{ $item->quantity }} @ ₹{{ number_format($item->unit_price, 2) }}</span>
+                                    
+                                    @if($item->components->isNotEmpty())
+                                        <!-- Snapshot child items nested display -->
+                                        <div class="mt-2 space-y-1 bg-slate-50 border border-slate-100 rounded-lg p-2 max-w-md">
+                                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">Bundle Contents (Snapshot):</span>
+                                            @foreach($item->components as $component)
+                                                <div class="flex items-center space-x-1.5 text-xs text-slate-600 font-sans">
+                                                    <span class="truncate flex-grow font-medium">{{ $component->product_name }}</span>
+                                                    <span class="font-bold text-slate-400 whitespace-nowrap">x{{ $component->quantity }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <span class="font-bold text-slate-900">₹{{ number_format($item->total_price, 2) }}</span>

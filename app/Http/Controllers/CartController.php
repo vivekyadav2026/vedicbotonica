@@ -46,9 +46,12 @@ class CartController extends Controller
         $newTotalQty = $currentQtyInCart + $quantity;
 
         if ($newTotalQty > $product->quantity) {
+            $msg = $product->is_combo 
+                ? "Only {$product->quantity} combo packs are currently available." . ($currentQtyInCart > 0 ? " (You already have {$currentQtyInCart} in your cart)" : "")
+                : "Only {$product->quantity} items available in stock." . ($currentQtyInCart > 0 ? " (You already have {$currentQtyInCart} in your cart)" : "");
             return response()->json([
                 'success' => false,
-                'message' => "Only {$product->quantity} items available in stock." . ($currentQtyInCart > 0 ? " (You already have {$currentQtyInCart} in your cart)" : "")
+                'message' => $msg
             ], 400);
         }
 
@@ -104,9 +107,12 @@ class CartController extends Controller
                 } else {
                     $product = Product::find($productId);
                     if ($product && $quantity > $product->quantity) {
+                        $msg = $product->is_combo 
+                            ? "Only {$product->quantity} combo packs are currently available."
+                            : "Only {$product->quantity} items available in stock.";
                         return response()->json([
                             'success' => false,
-                            'message' => "Only {$product->quantity} items available in stock."
+                            'message' => $msg
                         ], 400);
                     }
                 }

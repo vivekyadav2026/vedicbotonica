@@ -179,8 +179,23 @@
                                                     </span>
                                                 </td>
                                                 <td class="p-6 font-bold text-gray-900">₹{{ number_format($order->total_amount, 2) }}</td>
-                                                <td class="p-6">
+                                                <td class="p-6 flex items-center space-x-4">
                                                     <button @click="document.getElementById('order-detail-{{ $order->id }}').classList.toggle('hidden')" class="text-primary hover:text-primary-dark transition text-sm font-semibold cursor-pointer">View Items</button>
+                                                    
+                                                    @php $return = $order->returnRequests->first(); @endphp
+                                                    @if($order->status === 'completed')
+                                                        @if(!$return && $order->created_at->diffInDays(now()) <= 15)
+                                                            <a href="{{ route('orders.return.create', $order->id) }}" class="text-amber-600 hover:text-amber-800 transition text-sm font-semibold">Return Items</a>
+                                                        @elseif($return)
+                                                            <span class="px-2.5 py-1 text-xs font-semibold rounded-full 
+                                                                {{ $return->status === 'pending' ? 'bg-blue-100 text-blue-800' : '' }}
+                                                                {{ $return->status === 'approved' ? 'bg-green-105 text-green-800' : '' }}
+                                                                {{ $return->status === 'rejected' ? 'bg-red-100 text-red-800' : '' }}
+                                                            ">
+                                                                Return: {{ ucfirst($return->status) }}
+                                                            </span>
+                                                        @endif
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <!-- Nested Order Items details row -->
@@ -235,11 +250,26 @@
                                         <span>Date: {{ $order->created_at->format('M d, Y') }}</span>
                                         <span class="text-sm font-bold text-gray-900">Total: ₹{{ number_format($order->total_amount, 2) }}</span>
                                     </div>
-                                    <div class="border-t border-gray-100 pt-2.5">
-                                        <button @click="document.getElementById('order-detail-mobile-{{ $order->id }}').classList.toggle('hidden')" class="w-full text-center text-primary hover:text-primary-dark transition text-xs font-bold uppercase tracking-wider focus:outline-none flex items-center justify-center space-x-1 cursor-pointer">
+                                    <div class="border-t border-gray-100 pt-2.5 flex justify-between items-center text-xs font-bold uppercase tracking-wider">
+                                        <button @click="document.getElementById('order-detail-mobile-{{ $order->id }}').classList.toggle('hidden')" class="text-primary hover:text-primary-dark transition focus:outline-none flex items-center space-x-1 cursor-pointer">
                                             <span>View Items</span>
-                                            <i class="fa-solid fa-chevron-down text-[9px]"></i>
+                                            <i class="fa-solid fa-chevron-down text-[9px] ml-1"></i>
                                         </button>
+                                        
+                                        @php $return = $order->returnRequests->first(); @endphp
+                                        @if($order->status === 'completed')
+                                            @if(!$return && $order->created_at->diffInDays(now()) <= 15)
+                                                <a href="{{ route('orders.return.create', $order->id) }}" class="text-amber-600 hover:text-amber-800 transition">Return Items</a>
+                                            @elseif($return)
+                                                <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full 
+                                                    {{ $return->status === 'pending' ? 'bg-blue-50 text-blue-700 border border-blue-200' : '' }}
+                                                    {{ $return->status === 'approved' ? 'bg-green-50 text-green-700 border border-green-200' : '' }}
+                                                    {{ $return->status === 'rejected' ? 'bg-red-50 text-red-700 border border-red-200' : '' }}
+                                                ">
+                                                    Return: {{ $return->status }}
+                                                </span>
+                                            @endif
+                                        @endif
                                     </div>
                                     
                                     <!-- Nested Mobile Items list -->
