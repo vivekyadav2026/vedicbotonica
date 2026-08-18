@@ -35,3 +35,6 @@ Thumbs.db
 Homestead.json
 Homestead.yaml
 auth.json
+
+# User Uploads (Ignore to prevent Git deployments from deleting live uploads)
+/public/uploads/

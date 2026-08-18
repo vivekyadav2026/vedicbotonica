@@ -24,9 +24,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <!-- Breadcrumbs left-aligned -->
         <p class="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest leading-relaxed font-sans mb-8">
-            <a href="/" class="hover:text-[#C49A6C] transition-colors duration-300">Home</a> <span class="mx-1.5 text-gray-300">/</span> 
-            <a href="/shop" class="hover:text-[#C49A6C] transition-colors duration-300">Shop</a> <span class="mx-1.5 text-gray-300">/</span> 
-            <a href="/shop?categories[]={{ $product->category_id }}" class="hover:text-[#C49A6C] transition-colors duration-300">{{ $product->category->name }}</a> <span class="mx-1.5 text-gray-300">/</span> 
+            <a href="/" class="hover:text-[#C49A6C] transition-colors duration-300">Home</a> <span class="mx-2 text-[#C49A6C]/30">•</span> 
+            <a href="/shop" class="hover:text-[#C49A6C] transition-colors duration-300">Shop</a> <span class="mx-2 text-[#C49A6C]/30">•</span> 
+            <a href="/shop?categories[]={{ $product->category_id }}" class="hover:text-[#C49A6C] transition-colors duration-300">{{ $product->category->name }}</a> <span class="mx-2 text-[#C49A6C]/30">•</span> 
             <span class="text-gray-900 font-medium font-serif">{{ $product->name }}</span>
         </p>
 
@@ -37,12 +37,12 @@
                 <div class="flex flex-col-reverse md:flex-row gap-4">
                     <!-- Thumbnails Carousel (Vertical on MD+, Horizontal on Mobile) -->
                     @if($images && count($images) > 1)
-                        <div class="flex flex-row md:flex-col gap-3 overflow-x-auto md:overflow-x-visible md:overflow-y-auto max-h-[500px] flex-shrink-0 pb-2 md:pb-0">
+                        <div class="flex flex-row md:flex-col gap-3 overflow-x-auto md:overflow-x-visible md:overflow-y-auto max-h-[500px] flex-shrink-0 pb-2 md:pb-0 scrollbar-hide">
                             @foreach($images as $img)
                                 @php $imgUrl = asset($img); @endphp
                                 <button type="button" @click="activeImage = '{{ $imgUrl }}'" 
                                         :class="activeImage === '{{ $imgUrl }}' ? 'border-[#C49A6C] ring-2 ring-[#C49A6C]/30 shadow-md' : 'border-gray-200 hover:border-[#C49A6C]/30'"
-                                        class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl border p-2 overflow-hidden transition-all duration-300 flex items-center justify-center focus:outline-none flex-shrink-0 cursor-pointer shadow-xs">
+                                        class="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-2xl border p-2 overflow-hidden transition-all duration-300 flex items-center justify-center focus:outline-none flex-shrink-0 cursor-pointer shadow-2xs">
                                     <img src="{{ $imgUrl }}" alt="Product Thumbnail" class="max-h-full max-w-full object-contain">
                                 </button>
                             @endforeach
@@ -50,101 +50,20 @@
                     @endif
                     
                     <!-- Main Image Card -->
-                    <div class="md:flex-grow bg-white rounded-3xl overflow-hidden border border-[#C49A6C]/10 shadow-[0_10px_35px_rgba(196,154,108,0.05)] flex items-center justify-center p-0 aspect-square group max-w-md md:max-w-none mx-auto w-full">
+                    <div class="md:flex-grow bg-white rounded-3xl overflow-hidden border border-[#C49A6C]/10 shadow-[0_10px_35px_rgba(196,154,108,0.04)] flex items-center justify-center p-0 aspect-square group max-w-md md:max-w-none mx-auto w-full">
                         <img :src="activeImage" alt="{{ $product->name }}" class="w-full h-full object-contain block transition-transform duration-700 ease-out group-hover:scale-103">
                     </div>
                 </div>
-            </div>
-
-            <!-- Right: Product Details Stack (Span 5) -->
-            <div class="lg:col-span-5 space-y-6">
-                <!-- Title & Category -->
-                <div class="relative">
-                    <span class="text-[10px] text-[#C49A6C] uppercase font-bold tracking-widest block font-serif mb-1">{{ $product->category->name ?? 'Sacred Collection' }}</span>
-                    <div class="flex justify-between items-start gap-4">
-                        <h1 class="text-2xl sm:text-3xl font-serif font-bold text-gray-900 leading-tight">{{ $product->name }}</h1>
-                        <button type="button" id="share-btn" data-title="{{ $product->name }}" data-url="{{ request()->url() }}" class="text-gray-400 hover:text-[#C49A6C] transition-colors p-2 rounded-full hover:bg-[#FAF6F0]/50 cursor-pointer" title="Share Product">
-                            <i class="fa-solid fa-share-nodes text-lg"></i>
-                        </button>
-                    </div>
-                    @if($product->reviews_count > 0)
-                    <div class="flex items-center space-x-2 mt-2">
-                        <div class="flex text-yellow-500 text-[10px] gap-0.5">
-                            @for($i = 1; $i <= 5; $i++)
-                                <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
-                            @endfor
-                        </div>
-                        <a href="#reviews-section" class="text-xs font-bold text-[#C49A6C] hover:underline font-sans">
-                            {{ $product->average_rating }} ({{ $product->reviews_count }} {{ Str::plural('review', $product->reviews_count) }})
-                        </a>
-                    </div>
-                    @endif
-                </div>
-
-                <!-- Price Area -->
-                <div class="flex items-baseline space-x-3">
-                    @if($product->sale_price)
-                        <span class="text-3xl font-serif font-extrabold text-gray-950">₹{{ number_format($product->sale_price) }}</span>
-                        <span class="text-lg text-gray-400 line-through font-serif">₹{{ number_format($product->price) }}</span>
-                        @php
-                            $pctDiscount = round((($product->price - $product->sale_price) / $product->price) * 100);
-                        @endphp
-                        <span class="text-red-500 text-xs font-bold font-sans uppercase tracking-wider">{{ $pctDiscount }}% Off</span>
-                    @else
-                        <span class="text-3xl font-serif font-extrabold text-gray-950">₹{{ number_format($product->price) }}</span>
-                    @endif
-                </div>
-
-                <!-- Size / Weight Selection -->
-                <div class="space-y-2">
-                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Size / Weight</span>
-                    <div class="flex gap-2">
-                        <button type="button" class="border-black bg-black text-white px-5 py-2.5 rounded-xl text-xs font-semibold font-sans tracking-wide shadow-xs border">
-                            {{ $product->weight * 1000 }}g Standard
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Form & Actions -->
-                <form class="space-y-3" id="product-detail-form">
-                    @csrf
-                    @if($product->quantity <= 0)
-                        <!-- Out of stock display -->
-                        <button type="button" disabled class="w-full bg-gray-100 border border-gray-200 text-gray-400 font-serif font-bold h-12 rounded-xl tracking-wider text-xs uppercase cursor-not-allowed flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                            <span>Temporarily Out of Stock</span>
-                        </button>
-                    @else
-                        <div class="flex gap-3">
-                            <!-- Qty Selector -->
-                            <div class="flex items-center border border-gray-250 rounded-xl bg-white overflow-hidden shadow-xs h-12 w-32 justify-between flex-shrink-0">
-                                <button type="button" id="qty-minus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-minus text-xs"></i></button>
-                                <input type="number" id="qty-input" name="quantity" class="w-12 h-full text-center border-none focus:ring-0 text-sm font-semibold text-gray-955 focus:outline-none bg-transparent" value="1" min="1" max="{{ $product->quantity }}">
-                                <button type="button" id="qty-plus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></button>
-                            </div>
-                            
-                            <!-- Add to Bag -->
-                            <button type="button" id="detail-add-to-cart" data-product-id="{{ $product->id }}" class="flex-grow bg-white border border-black hover:bg-gray-50 text-gray-900 font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer active:scale-97 flex items-center justify-center gap-2">
-                                Add to bag
-                            </button>
-                        </div>
-                        
-                        <!-- Buy Now -->
-                        <button type="button" id="detail-buy-now" data-product-id="{{ $product->id }}" class="w-full bg-black hover:bg-gray-950 text-white font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer shadow-md active:scale-97 flex items-center justify-center gap-2">
-                            Buy Now
-                        </button>
-                    @endif
-                </form>
 
                 @if($product->is_combo)
-                    <!-- What's Inside This Combo? Section -->
-                    <div class="border border-[#C49A6C]/25 bg-[#FAF6F0]/30 rounded-2xl p-5 sm:p-6 space-y-4 shadow-sm">
+                    <!-- What's Inside This Combo? Section (Luxury Box Style) -->
+                    <div class="mt-8 border border-[#C49A6C]/30 bg-[#FAF6F0]/80 rounded-3xl p-5 sm:p-6 space-y-4 shadow-sm">
                         <div class="flex items-center justify-between pb-3 border-b border-[#C49A6C]/15">
                             <h3 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wider flex items-center gap-2">
                                 <i class="fa-solid fa-box-open text-[#C49A6C]"></i>
                                 <span>What's Inside This Combo?</span>
                             </h3>
-                            <span class="bg-[#C49A6C] text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded-md tracking-wider font-sans">
+                            <span class="bg-[#C49A6C] text-white text-[9px] uppercase font-bold px-2.5 py-0.5 rounded-md tracking-wider font-sans">
                                 Special Bundle
                             </span>
                         </div>
@@ -158,15 +77,15 @@
                                         $childImg = ($childImages && count($childImages) > 0) ? asset($childImages[0]) : asset('images/premium_dhoop_product.png');
                                         $childPrice = $item->product->sale_price ?: $item->product->price;
                                     @endphp
-                                    <div class="flex items-center justify-between bg-white/70 p-3 rounded-xl border border-gray-100 gap-3">
-                                        <div class="flex items-center space-x-3 min-w-0 flex-1">
-                                            <img src="{{ $childImg }}" alt="{{ $item->product->name }}" class="w-10 h-10 object-contain border rounded-lg p-0.5 bg-[#FAF6F0]/30 flex-shrink-0">
-                                            <div class="min-w-0">
-                                                <a href="/product/{{ $item->product->slug }}" class="text-xs sm:text-sm font-semibold text-gray-800 hover:text-[#C49A6C] transition truncate block">{{ $item->product->name }}</a>
-                                                <span class="text-[10px] text-gray-400 font-medium font-sans">Value: ₹{{ number_format($childPrice, 2) }} each</span>
+                                    <div class="flex items-center justify-between bg-white p-4.5 sm:p-5 rounded-2xl border border-[#C49A6C]/15 gap-4 shadow-2xs hover:border-[#C49A6C]/40 hover:shadow-sm transition-all duration-300">
+                                        <div class="flex items-center space-x-4 min-w-0 flex-1">
+                                            <img src="{{ $childImg }}" alt="{{ $item->product->name }}" class="w-14 h-14 sm:w-16 sm:h-16 object-contain border rounded-xl p-1 bg-[#FAF6F0]/30 flex-shrink-0">
+                                            <div class="min-w-0 space-y-1">
+                                                <a href="/product/{{ $item->product->slug }}" class="text-sm sm:text-base font-bold text-gray-900 hover:text-[#C49A6C] transition truncate block leading-snug">{{ $item->product->name }}</a>
+                                                <span class="text-xs sm:text-sm text-[#C49A6C] font-bold font-sans">Value: ₹{{ number_format($childPrice, 2) }} each</span>
                                             </div>
                                         </div>
-                                        <div class="text-xs font-bold text-[#C49A6C] whitespace-nowrap bg-[#FAF6F0] border border-[#C49A6C]/10 px-2.5 py-1 rounded-lg font-sans">
+                                        <div class="text-sm sm:text-base font-black text-[#C49A6C] bg-[#C49A6C]/10 border border-[#C49A6C]/25 px-4 py-2 rounded-xl font-sans shadow-3xs">
                                             × {{ $item->quantity }}
                                         </div>
                                     </div>
@@ -185,7 +104,7 @@
                                 <span>₹{{ number_format($product->sale_price ?: $product->price, 2) }}</span>
                             </div>
                             @if($product->savings > 0)
-                                <div class="flex justify-between text-emerald-700 font-bold bg-emerald-50 border border-emerald-100/55 p-2 rounded-xl text-center">
+                                <div class="flex justify-between text-emerald-700 font-bold bg-emerald-50 border border-emerald-100/55 p-2.5 rounded-xl text-center shadow-3xs">
                                     <span>You Save:</span>
                                     <span>₹{{ number_format($product->savings, 2) }} ({{ $product->discount_percent }}% OFF)</span>
                                 </div>
@@ -193,56 +112,139 @@
                         </div>
                     </div>
                 @endif
+            </div>
 
-                <!-- Product Info Table -->
-                <div class="border border-gray-150 rounded-2xl overflow-hidden bg-white shadow-xs">
-                    <div class="bg-gray-50/50 px-4 py-3 border-b border-gray-150">
+            <!-- Right: Product Details Stack (Span 5) -->
+            <div class="lg:col-span-5 space-y-6">
+                <!-- Title & Category -->
+                <div class="relative">
+                    <span class="text-[10px] text-[#C49A6C] uppercase font-bold tracking-widest block font-serif mb-1">{{ $product->category->name ?? 'Sacred Collection' }}</span>
+                    <div class="flex justify-between items-start gap-4">
+                        <h1 class="text-2xl sm:text-3xl font-serif font-bold text-gray-900 leading-tight tracking-wide">{{ $product->name }}</h1>
+                        <button type="button" id="share-btn" data-title="{{ $product->name }}" data-url="{{ request()->url() }}" class="text-gray-400 hover:text-[#C49A6C] transition-colors p-2 rounded-full hover:bg-[#C49A6C]/10 cursor-pointer" title="Share Product">
+                            <i class="fa-solid fa-share-nodes text-lg"></i>
+                        </button>
+                    </div>
+                    @if($product->reviews_count > 0)
+                    <div class="flex items-center space-x-2 mt-2">
+                        <div class="flex text-yellow-500 text-[10px] gap-0.5">
+                            @for($i = 1; $i <= 5; $i++)
+                                <i class="fa-{{ $i <= round($product->average_rating) ? 'solid' : 'regular' }} fa-star"></i>
+                            @endfor
+                        </div>
+                        <a href="#reviews-section" class="text-xs font-bold text-[#C49A6C] hover:underline font-sans">
+                            {{ $product->average_rating }} ({{ $product->reviews_count }} {{ Str::plural('review', $product->reviews_count) }})
+                        </a>
+                    </div>
+                    @endif
+                </div>
+
+                <!-- Price Area Capsule -->
+                <div class="flex items-baseline space-x-3 bg-white border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-2xs w-fit">
+                    @if($product->sale_price)
+                        <span class="text-2xl sm:text-3xl font-serif font-extrabold text-gray-950">₹{{ number_format($product->sale_price) }}</span>
+                        <span class="text-base text-gray-400 line-through font-serif">₹{{ number_format($product->price) }}</span>
+                        @php
+                            $pctDiscount = round((($product->price - $product->sale_price) / $product->price) * 100);
+                        @endphp
+                        <span class="text-red-500 text-xs font-bold font-sans uppercase tracking-wider bg-red-50 px-2 py-0.5 rounded-md">{{ $pctDiscount }}% Off</span>
+                    @else
+                        <span class="text-2xl sm:text-3xl font-serif font-extrabold text-gray-950">₹{{ number_format($product->price) }}</span>
+                    @endif
+                </div>
+
+                <!-- Size / Weight Selection -->
+                <div class="space-y-2">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider block">Size / Weight</span>
+                    <div class="flex gap-2">
+                        <button type="button" class="border-[#C49A6C] bg-[#C49A6C]/10 text-gray-800 px-5 py-2.5 rounded-xl text-xs font-semibold font-sans tracking-wide border shadow-2xs">
+                            {{ $product->weight * 1000 }}g Standard
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Form & Actions -->
+                <form class="space-y-3" id="product-detail-form">
+                    @csrf
+                    @if($product->quantity <= 0)
+                        <!-- Out of stock display -->
+                        <button type="button" disabled class="w-full bg-gray-150 border border-gray-200 text-gray-400 font-serif font-bold h-12 rounded-xl tracking-wider text-xs uppercase cursor-not-allowed flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                            <span>Temporarily Out of Stock</span>
+                        </button>
+                    @else
+                        <div class="flex gap-3">
+                            <!-- Qty Selector with gold border -->
+                            <div class="flex items-center border border-[#C49A6C]/35 rounded-xl bg-white overflow-hidden shadow-2xs h-12 w-32 justify-between flex-shrink-0">
+                                <button type="button" id="qty-minus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-minus text-xs"></i></button>
+                                <input type="number" id="qty-input" name="quantity" class="w-12 h-full text-center border-none focus:ring-0 text-sm font-semibold text-gray-900 focus:outline-none bg-transparent" value="1" min="1" max="{{ $product->quantity }}">
+                                <button type="button" id="qty-plus" class="w-10 h-full text-gray-600 hover:bg-[#FAF6F0] hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer"><i class="fa-solid fa-plus text-xs"></i></button>
+                            </div>
+                            
+                            <!-- Add to Bag Premium style -->
+                            <button type="button" id="detail-add-to-cart" data-product-id="{{ $product->id }}" class="flex-grow bg-white border border-[#C49A6C] hover:bg-[#C49A6C] hover:text-white text-gray-900 font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer active:scale-97 flex items-center justify-center gap-2 shadow-2xs">
+                                Add to bag
+                            </button>
+                        </div>
+                        
+                        <!-- Buy Now Premium style -->
+                        <button type="button" id="detail-buy-now" data-product-id="{{ $product->id }}" class="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-serif font-bold h-12 rounded-xl transition-all duration-300 tracking-wider text-xs uppercase cursor-pointer shadow-md active:scale-97 flex items-center justify-center gap-2">
+                            Buy Now
+                        </button>
+                    @endif
+                </form>
+
+
+
+                <!-- Product Info Table (Luxury Details Block) -->
+                <div class="border border-[#C49A6C]/20 rounded-3xl overflow-hidden bg-white shadow-2xs">
+                    <div class="bg-[#FAF6F0]/50 px-5 py-4 border-b border-[#C49A6C]/15">
                         <h3 class="font-serif font-bold text-gray-900 text-xs tracking-wide uppercase">Product Information</h3>
                     </div>
                     <table class="w-full text-left text-xs border-collapse font-sans">
                         <tbody class="divide-y divide-gray-100">
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400 w-1/3">Brand</td>
-                                <td class="px-4 py-2.5 font-semibold text-gray-800">Vedic Botanica</td>
+                                <td class="px-5 py-3.5 font-semibold text-gray-400 w-1/3">Brand</td>
+                                <td class="px-5 py-3.5 font-bold text-gray-800">Vedic Botanica</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400">Category</td>
-                                <td class="px-4 py-2.5 font-semibold text-[#C49A6C] hover:underline">
+                                <td class="px-5 py-3.5 font-semibold text-gray-400">Category</td>
+                                <td class="px-5 py-3.5 font-bold text-[#C49A6C] hover:underline">
                                     <a href="/shop?categories[]={{ $product->category_id }}">{{ $product->category->name }}</a>
                                 </td>
                             </tr>
                             @if($product->sku)
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400">SKU</td>
-                                <td class="px-4 py-2.5 font-semibold text-gray-800">{{ $product->sku }}</td>
+                                <td class="px-5 py-3.5 font-semibold text-gray-400">SKU</td>
+                                <td class="px-5 py-3.5 font-bold text-gray-800">{{ $product->sku }}</td>
                             </tr>
                             @endif
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400">Packed Weight</td>
-                                <td class="px-4 py-2.5 font-semibold text-gray-800">{{ $product->weight * 1000 }}g ({{ $product->weight }} kg)</td>
+                                <td class="px-5 py-3.5 font-semibold text-gray-400">Packed Weight</td>
+                                <td class="px-5 py-3.5 font-bold text-gray-800">{{ $product->weight * 1000 }}g ({{ $product->weight }} kg)</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400">Box Dimensions</td>
-                                <td class="px-4 py-2.5 font-semibold text-gray-800">{{ $product->length }} x {{ $product->width }} x {{ $product->height }} cm</td>
+                                <td class="px-5 py-3.5 font-semibold text-gray-400">Box Dimensions</td>
+                                <td class="px-5 py-3.5 font-bold text-gray-800">{{ $product->length }} x {{ $product->width }} x {{ $product->height }} cm</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400">Product Type</td>
-                                <td class="px-4 py-2.5 font-semibold text-gray-800">Ayurvedic Wellness</td>
+                                <td class="px-5 py-3.5 font-semibold text-gray-400">Product Type</td>
+                                <td class="px-5 py-3.5 font-bold text-gray-800">Ayurvedic Wellness</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2.5 font-bold text-gray-400">Origin</td>
-                                <td class="px-4 py-2.5 font-semibold text-gray-800">India</td>
+                                <td class="px-5 py-3.5 font-semibold text-gray-400">Origin</td>
+                                <td class="px-5 py-3.5 font-bold text-gray-800">India</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Product Description with read more toggle -->
-                <div class="space-y-3" x-data="{ expanded: false }">
-                    <h3 class="font-serif font-bold text-gray-900 text-sm border-b border-gray-100 pb-2">Product Description</h3>
+                <div class="bg-white border border-[#C49A6C]/10 rounded-3xl p-6 space-y-3 shadow-3xs" x-data="{ expanded: false }">
+                    <h3 class="font-serif font-bold text-gray-900 text-sm border-b border-[#C49A6C]/15 pb-2">Product Description</h3>
                     <div :class="expanded ? '' : 'max-h-56 overflow-hidden relative'" class="transition-all duration-300">
                         @if($product->short_description)
-                            <p class="font-medium text-gray-800 mb-3 font-serif text-sm">{{ $product->short_description }}</p>
+                            <p class="font-bold text-gray-800 mb-3 font-serif text-sm">{{ $product->short_description }}</p>
                         @endif
                         <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-sans whitespace-pre-line">{{ $product->description }}</p>
                         <div x-show="!expanded" class="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
@@ -253,6 +255,7 @@
                 </div>
 
             </div>
+        </div>
         </div>
 
 
