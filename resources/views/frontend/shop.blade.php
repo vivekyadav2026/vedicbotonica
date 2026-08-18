@@ -1,6 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title', 'Shop')
+@section('title', 'Vedic Botanica Shop - Buy Pure Cow Dung Dhoop Sticks & Cones')
+@section('meta_description', 'Browse the complete collection of organic, charcoal-free dhoop sticks and cones from Vedic Botanica. Elevate your pooja, home ambiance, and meditation rituals.')
+@section('meta_keywords', 'Vedic Botanica shop, buy dhoop online, organic pooja items, natural incense cones, buy premium combos, clean air incense')
 
 @section('content')
     <!-- Page Header -->

@@ -1,6 +1,17 @@
 @extends('layouts.frontend')
 
-@section('title', 'Product Detail')
+@section('title', $product->name . ' | Premium Dhoop Sticks & Cones | Vedic Botanica')
+@section('meta_description', strip_tags($product->short_description ?: \Illuminate\Support\Str::limit($product->description, 150)))
+@section('meta_keywords', $product->name . ', ' . ($product->category->name ?? 'Dhoop') . ', Vedic Botanica, organic incense, natural pooja items')
+
+<!-- Open Graph Custom Overrides -->
+@section('og_title', $product->name . ' | Vedic Botanica')
+@section('og_description', strip_tags($product->short_description ?: \Illuminate\Support\Str::limit($product->description, 150)))
+@php
+    $seoImages = json_decode($product->images);
+    $seoOgImage = ($seoImages && count($seoImages) > 0) ? asset($seoImages[0]) : asset('images/premium_dhoop_product.png');
+@endphp
+@section('og_image', $seoOgImage)
 
 @section('content')
     <!-- Product Detail Section -->

@@ -27,7 +27,9 @@ class ComboController extends Controller
         }
 
         $combos = $query->latest()->paginate(10)->withQueryString();
-        $categories = Category::all();
+        $categories = Category::whereHas('products', function($q) {
+            $q->where('is_combo', true);
+        })->get();
 
         return view('admin.combos.index', compact('combos', 'categories'));
     }

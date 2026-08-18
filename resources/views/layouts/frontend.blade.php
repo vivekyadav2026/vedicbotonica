@@ -5,7 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Vedic Botanica - @yield('title', 'Ecommerce')</title>
+    <title>@yield('title', 'Vedic Botanica - Premium Organic Dhoop Cones & Sticks')</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="@yield('meta_description', 'Discover Vedic Botanica. Shop 100% natural, charcoal-free, and organic cow dung dhoop sticks and cones crafted for spiritual rituals, meditation, and pure positive energy.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'Vedic Botanica, organic dhoop sticks, bambooless dhoop, cow dung dhoop, charcoal-free incense, natural dhoop cones, premium dhoop combos, ayurvedic incense, spiritual wellness')">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="@yield('canonical', url()->current())">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Vedic Botanica">
+    <meta property="og:title" content="@yield('og_title', 'Vedic Botanica - Premium Organic Dhoop Cones & Sticks')">
+    <meta property="og:description" content="@yield('og_description', 'Shop 100% natural, charcoal-free, and organic cow dung dhoop sticks and cones crafted for spiritual rituals, meditation, and pure positive energy.')">
+    <meta property="og:image" content="@yield('og_image', asset('images/premium_dhoop_product.png'))">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('og_title', 'Vedic Botanica - Premium Organic Dhoop Cones & Sticks')">
+    <meta property="twitter:description" content="@yield('og_description', 'Shop 100% natural, charcoal-free, and organic cow dung dhoop sticks and cones crafted for spiritual rituals, meditation, and pure positive energy.')">
+    <meta property="twitter:image" content="@yield('og_image', asset('images/premium_dhoop_product.png'))">
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
@@ -309,18 +330,128 @@
         @yield('content')
     </main>
 
+    <!-- Assured by Purity Section -->
+    <div class="bg-[#FAF6F0]/80 py-16 border-t border-gray-150/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-xl sm:text-2xl font-serif font-bold text-gray-900 mb-10 tracking-wide">Assured by Purity</h2>
+            <div class="grid grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <!-- Badge 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#C49A6C]/30 bg-white flex items-center justify-center shadow-xs transition-transform duration-500 hover:scale-108 hover:border-[#C49A6C]">
+                        <i class="fa-solid fa-leaf text-xl sm:text-2xl text-[#C49A6C]"></i>
+                    </div>
+                    <span class="mt-4 font-serif font-bold text-[10px] sm:text-xs text-gray-800 tracking-wider uppercase">Natural Products</span>
+                </div>
+                <!-- Badge 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#C49A6C]/30 bg-white flex items-center justify-center shadow-xs transition-transform duration-500 hover:scale-108 hover:border-[#C49A6C]">
+                        <i class="fa-solid fa-cow text-xl sm:text-2xl text-[#C49A6C]"></i>
+                    </div>
+                    <span class="mt-4 font-serif font-bold text-[10px] sm:text-xs text-gray-800 tracking-wider uppercase">Pure Cow Dung</span>
+                </div>
+                <!-- Badge 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#C49A6C]/30 bg-white flex items-center justify-center shadow-xs transition-transform duration-500 hover:scale-108 hover:border-[#C49A6C]">
+                        <i class="fa-solid fa-ban text-xl sm:text-2xl text-[#C49A6C]"></i>
+                    </div>
+                    <span class="mt-4 font-serif font-bold text-[10px] sm:text-xs text-gray-800 tracking-wider uppercase">Charcoal Free</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delivered With Section -->
+    <div class="bg-[#FAF6F0] py-12 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-[10px] text-gray-400 uppercase tracking-widest font-bold font-sans mb-8">Delivered With</h3>
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-16">
+                <!-- Make In India -->
+                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
+                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                    </svg>
+                    <div class="text-left">
+                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">Make In India</span>
+                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Local Artisans</span>
+                    </div>
+                </div>
+
+                <!-- Ayush Ministry -->
+                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
+                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-1-6l-3-3 1.41-1.41L11 13.17l4.59-4.59L17 10l-6 6z"/>
+                    </svg>
+                    <div class="text-left">
+                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">Ayush Certified</span>
+                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Standard Quality</span>
+                    </div>
+                </div>
+
+                <!-- 100% Organic -->
+                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
+                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17 8C8 10 5.9 16.17 6 20c.07 2.76 2.24 5 5 5h2c2.76 0 4.93-2.24 5-5 .1-3.83-2-9.83-11-12m-3 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+                    </svg>
+                    <div class="text-left">
+                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">100% Organic</span>
+                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Nature Sourced</span>
+                    </div>
+                </div>
+
+                <!-- Logistics Partner -->
+                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
+                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm12 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1-5.5h-2.5V10H17l2 3z"/>
+                    </svg>
+                    <div class="text-left">
+                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">Express Shipping</span>
+                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Secure Delivery</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gayatri Mantra Marquee Ribbon -->
+    <div class="bg-gradient-to-r from-[#D4A373] via-[#C49A6C] to-[#D4A373] py-4 overflow-hidden border-t border-b border-[#C49A6C]/20 relative shadow-inner">
+        <div class="flex whitespace-nowrap font-serif text-white text-xs sm:text-sm md:text-base font-bold tracking-widest uppercase leading-none">
+            <div class="animate-marquee flex flex-row items-center">
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+            </div>
+            <div class="animate-marquee flex flex-row items-center" aria-hidden="true">
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+                <span class="mx-8 flex items-center gap-2"><span class="text-[#FAF6F0] text-lg">ॐ</span> भूर्भुवः स्वः तत्सवितुर्वरेण्यं भर्गो देवस्य धीमहि धियो यो नः प्रचोदयात् ॥</span>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            animation: marquee 35s linear infinite;
+        }
+    </style>
+
     <!-- Footer -->
-    <footer class="bg-secondary text-white pt-16 sm:pt-24 pb-12 mt-16 sm:mt-24">
+    <footer class="bg-[#FAF6F0] text-gray-800 border-t border-[#C49A6C]/20 pt-16 sm:pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
                 
                 <!-- About -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 font-serif">About Our Store</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    <h3 class="text-lg font-bold mb-4 font-serif text-gray-900">About Our Store</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
                         Welcome to Vedic Botanica – a place where spirituality meets authenticity. We are dedicated to providing genuine, certified, and high-quality premium gou dhoop sticks that bring positivity, balance, and inner peace into your life.
                     </p>
-                    <h4 class="text-md font-bold mb-3 font-serif">Follow Us</h4>
+                    <h4 class="text-md font-bold mb-3 font-serif text-gray-900">Follow Us</h4>
                     <div class="flex space-x-3">
                         @php
                             $facebookUrl = $siteSettings['facebook_url'] ?? 'https://www.facebook.com/share/19Dfpv7AfK';
@@ -329,22 +460,22 @@
                             $youtubeUrl = $siteSettings['youtube_url'] ?? '';
                         @endphp
                         @if(!empty($facebookUrl))
-                            <a href="{{ $facebookUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                            <a href="{{ $facebookUrl }}" target="_blank" class="bg-[#C49A6C]/10 text-[#C49A6C] hover:bg-[#C49A6C] hover:text-white border border-[#C49A6C]/20 h-8 w-8 rounded-full flex items-center justify-center transition-colors">
                                 <i class="fa-brands fa-facebook-f text-sm"></i>
                             </a>
                         @endif
                         @if(!empty($instagramUrl))
-                            <a href="{{ $instagramUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                            <a href="{{ $instagramUrl }}" target="_blank" class="bg-[#C49A6C]/10 text-[#C49A6C] hover:bg-[#C49A6C] hover:text-white border border-[#C49A6C]/20 h-8 w-8 rounded-full flex items-center justify-center transition-colors">
                                 <i class="fa-brands fa-instagram text-sm"></i>
                             </a>
                         @endif
                         @if(!empty($twitterUrl))
-                            <a href="{{ $twitterUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                            <a href="{{ $twitterUrl }}" target="_blank" class="bg-[#C49A6C]/10 text-[#C49A6C] hover:bg-[#C49A6C] hover:text-white border border-[#C49A6C]/20 h-8 w-8 rounded-full flex items-center justify-center transition-colors">
                                 <i class="fa-brands fa-x-twitter text-sm"></i>
                             </a>
                         @endif
                         @if(!empty($youtubeUrl))
-                            <a href="{{ $youtubeUrl }}" target="_blank" class="bg-gray-700 hover:bg-primary h-8 w-8 rounded-full flex items-center justify-center transition-colors">
+                            <a href="{{ $youtubeUrl }}" target="_blank" class="bg-[#C49A6C]/10 text-[#C49A6C] hover:bg-[#C49A6C] hover:text-white border border-[#C49A6C]/20 h-8 w-8 rounded-full flex items-center justify-center transition-colors">
                                 <i class="fa-brands fa-youtube text-sm"></i>
                             </a>
                         @endif
@@ -353,46 +484,46 @@
 
                 <!-- Quick Links -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 font-serif">Quick Links</h3>
+                    <h3 class="text-lg font-bold mb-4 font-serif text-gray-900">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="/" class="text-gray-400 hover:text-primary text-sm transition-colors">Home</a></li>
-                        <li><a href="/about" class="text-gray-400 hover:text-primary text-sm transition-colors">About Us</a></li>
-                        <li><a href="/shop" class="text-gray-400 hover:text-primary text-sm transition-colors">Shop</a></li>
-                        <li><a href="/contact" class="text-gray-400 hover:text-primary text-sm transition-colors">Contact Us</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-primary text-sm transition-colors">Home</a></li>
+                        <li><a href="/about" class="text-gray-600 hover:text-primary text-sm transition-colors">About Us</a></li>
+                        <li><a href="/shop" class="text-gray-600 hover:text-primary text-sm transition-colors">Shop</a></li>
+                        <li><a href="/contact" class="text-gray-600 hover:text-primary text-sm transition-colors">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <!-- Helpful Links -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 font-serif">Helpful Links</h3>
+                    <h3 class="text-lg font-bold mb-4 font-serif text-gray-900">Helpful Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="{{ route('privacy') }}" class="text-gray-400 hover:text-primary text-sm transition-colors">Privacy Policy</a></li>
-                        <li><a href="{{ route('terms') }}" class="text-gray-400 hover:text-primary text-sm transition-colors">Terms & Conditions</a></li>
-                        <li><a href="{{ route('refund') }}" class="text-gray-400 hover:text-primary text-sm transition-colors">Refund Policy</a></li>
-                        <li><a href="{{ route('cancellation') }}" class="text-gray-400 hover:text-primary text-sm transition-colors">Cancellation Policy</a></li>
-                        <li><a href="{{ route('shipping') }}" class="text-gray-400 hover:text-primary text-sm transition-colors">Shipping Policy</a></li>
+                        <li><a href="{{ route('privacy') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="{{ route('terms') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Terms & Conditions</a></li>
+                        <li><a href="{{ route('refund') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Refund Policy</a></li>
+                        <li><a href="{{ route('cancellation') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Cancellation Policy</a></li>
+                        <li><a href="{{ route('shipping') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Shipping Policy</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h3 class="text-lg font-bold mb-4 font-serif">Contact Us</h3>
+                    <h3 class="text-lg font-bold mb-4 font-serif text-gray-900">Contact Us</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fa-solid fa-phone mt-1 mr-3 text-gray-400 text-sm"></i>
-                            <span class="text-gray-400 text-sm">+91 92175 30653</span>
+                            <i class="fa-solid fa-phone mt-1 mr-3 text-[#C49A6C] text-sm"></i>
+                            <span class="text-gray-700 text-sm font-medium">+91 92175 30653</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fa-solid fa-envelope mt-1 mr-3 text-gray-400 text-sm"></i>
-                            <span class="text-gray-400 text-sm">info@vedicbotanica.com</span>
+                            <i class="fa-solid fa-envelope mt-1 mr-3 text-[#C49A6C] text-sm"></i>
+                            <span class="text-gray-700 text-sm font-medium">info@vedicbotanica.com</span>
                         </li>
                     </ul>
                 </div>
 
             </div>
             
-               <div class="border-t border-gray-700 mt-12 pt-8 flex justify-between items-center">
-                <p class="text-gray-400 text-sm">&copy; 2026 Vedic Botanica All Right Reserved | Designed by <a href="https://www.vivektech.online/" target="_blank" class="hover:text-[#C49A6C] transition-colors underline font-medium">VivekTech</a></p>
+               <div class="border-t border-gray-200 mt-12 pt-8 flex justify-between items-center">
+                <p class="text-gray-500 text-sm">&copy; 2026 Vedic Botanica All Right Reserved | Designed by <a href="https://www.vivektech.online/" target="_blank" class="hover:text-[#C49A6C] transition-colors underline font-medium">VivekTech</a></p>
                 <style>
                     .whatsapp-float {
                         position: fixed;

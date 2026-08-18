@@ -1,7 +1,8 @@
 @extends('layouts.frontend')
 
-@section('title', 'Home')
-
+@section('title', 'Vedic Botanica - Premium Organic Dhoop Sticks & Cones')
+@section('meta_description', 'Experience divine purity with Vedic Botanica. Shop 100% natural, charcoal-free, and organic cow dung dhoop sticks and cones crafted for spiritual rituals, wellness, and deep meditation.')
+@section('meta_keywords', 'Vedic Botanica, organic dhoop, charcoal-free dhoop, cow dung dhoop sticks, meditation incense, ayurvedic cones, premium incense sticks, natural pooja items')
 @section('content')
     <!-- Hero Banner Slider -->
     @php
@@ -222,7 +223,7 @@
    
 
     <!-- Shop by Category Section -->
-    <div id="shop-by-category" class="bg-gradient-to-b from-[#FAF6F0]/40 to-white pt-8 pb-4 border-b border-gray-100 relative overflow-hidden">
+    <div id="shop-by-category" class="bg-[#FAF6F0] pt-8 pb-4 border-b border-gray-150/50 relative overflow-hidden">
         <!-- Subtle background glow -->
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#C49A6C]/2 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -384,7 +385,7 @@
 
 
       <!-- Best Selling Products -->
-    <div class="bg-white pt-6 pb-10">
+    <div class="bg-[#FAF6F0] pt-6 pb-10 border-b border-gray-150/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-xl mx-auto mb-10">
                 <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">Customer Favorites</span>
@@ -502,7 +503,7 @@
         $dealImage = ($dealImages && count($dealImages) > 0) ? asset($dealImages[0]) : asset('images/premium_dhoop_product.png');
         $inWishlist = in_array($dealOfWeek->id, session()->get('wishlist', []));
     @endphp
-    <div class="bg-[#FAF6F0]/30 py-12 border-t border-b border-gray-100">
+    <div class="bg-[#FAF6F0] py-12 border-t border-b border-gray-150/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl border border-[#C49A6C]/20 shadow-[0_15px_45px_rgba(196,154,108,0.1)] overflow-hidden p-6 sm:p-10 lg:p-12">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -594,7 +595,7 @@
 
 
     <!-- Why Choose Vedic Botanica Section (Slide 06) -->
-    <div id="why-choose-us" class="bg-[#FAF6F0]/40 py-16 border-t border-b border-gray-150/70 relative overflow-hidden">
+    <div id="why-choose-us" class="bg-[#FAF6F0] py-16 border-t border-b border-gray-150/60 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-xl mx-auto mb-12">
                 <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">OUR PROMISE</span>
@@ -693,7 +694,7 @@
 
     <!-- Featured Healing Essentials -->
     @if(isset($featuredProducts) && count($featuredProducts) > 0)
-    <div class="bg-white pt-6 pb-10 border-b border-gray-100">
+    <div class="bg-[#FAF6F0] pt-6 pb-10 border-b border-gray-150/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-xl mx-auto mb-10">
                 <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full block mx-auto w-fit mb-3 font-serif">Pure & Divine</span>
@@ -804,7 +805,7 @@
     </div>
     @endif
     <!-- Ingredients Showcase Section (Slide 04: The Finest Gifts from Nature) -->
-    <div id="ingredients" class="bg-gradient-to-b from-white via-[#FAF6F0]/40 to-white pt-16 pb-16 border-t border-b border-gray-150/70 relative overflow-hidden">
+    <div id="ingredients" class="bg-[#FAF6F0] pt-16 pb-16 border-t border-b border-gray-150/60 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C49A6C]/3 rounded-full blur-3xl pointer-events-none z-0"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -907,7 +908,7 @@
 
 
     <!-- Lifestyle Section (Slide 11: Elevate Your Everyday Rituals) -->
-    <div id="lifestyle" class="bg-white py-16 border-t border-b border-gray-150/70 relative overflow-hidden">
+    <div id="lifestyle" class="bg-[#FAF6F0] py-16 border-t border-b border-gray-150/60 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-xl mx-auto mb-12">
                 <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">LIFESTYLE</span>

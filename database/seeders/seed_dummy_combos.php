@@ -23,11 +23,15 @@ if (!$category) {
     ]);
 }
 
+// Get standard categories for constituent products
+$sticksCategory = Category::where('slug', 'bambooless-dhoop-sticks-pet-box')->first();
+$conesCategory = Category::where('slug', 'dhoop-cones-pet-box')->first();
+
 // Check or create constituent products
 $sandal = Product::where('slug', 'premium-sandalwood-dhoop')->first();
 if (!$sandal) {
     $sandal = Product::create([
-        'category_id' => $category->id,
+        'category_id' => $sticksCategory ? $sticksCategory->id : $category->id,
         'name' => 'Premium Sandalwood Dhoop',
         'slug' => 'premium-sandalwood-dhoop',
         'price' => 250.00,
@@ -42,7 +46,7 @@ if (!$sandal) {
 $guggal = Product::where('slug', 'organic-guggal-cones')->first();
 if (!$guggal) {
     $guggal = Product::create([
-        'category_id' => $category->id,
+        'category_id' => $conesCategory ? $conesCategory->id : $category->id,
         'name' => 'Organic Guggal Cones',
         'slug' => 'organic-guggal-cones',
         'price' => 180.00,
@@ -57,7 +61,7 @@ if (!$guggal) {
 $loban = Product::where('slug', 'classic-loban-sticks')->first();
 if (!$loban) {
     $loban = Product::create([
-        'category_id' => $category->id,
+        'category_id' => $sticksCategory ? $sticksCategory->id : $category->id,
         'name' => 'Classic Loban Sticks',
         'slug' => 'classic-loban-sticks',
         'price' => 150.00,
@@ -72,7 +76,7 @@ if (!$loban) {
 $jasmine = Product::where('slug', 'mystic-jasmine-cones')->first();
 if (!$jasmine) {
     $jasmine = Product::create([
-        'category_id' => $category->id,
+        'category_id' => $conesCategory ? $conesCategory->id : $category->id,
         'name' => 'Mystic Jasmine Cones',
         'slug' => 'mystic-jasmine-cones',
         'price' => 220.00,

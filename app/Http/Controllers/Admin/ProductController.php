@@ -16,8 +16,10 @@ class ProductController extends Controller
         $query = Product::where('is_combo', false)->with(['category', 'activeReviews']);
 
         if ($request->filled('search')) {
-            $query->where('name', 'like', '%' . $request->search . '%')
+            $query->where(function($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->search . '%')
                   ->orWhere('sku', 'like', '%' . $request->search . '%');
+            });
         }
 
         if ($request->filled('category_id')) {
@@ -25,7 +27,9 @@ class ProductController extends Controller
         }
 
         $products = $query->latest()->paginate(10)->withQueryString();
-        $categories = Category::all();
+        $categories = Category::whereHas('products', function($q) {
+            $q->where('is_combo', false);
+        })->get();
 
         return view('admin.products.index', compact('products', 'categories'));
     }

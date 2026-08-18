@@ -112,3 +112,6 @@ Route::withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class])->post(
     '/webhook/razorpay',
     [CheckoutController::class, 'razorpayWebhook']
 )->name('webhook.razorpay');
+
+// Dynamic XML Sitemap Route for SEO
+Route::get('/sitemap.xml', [\App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
