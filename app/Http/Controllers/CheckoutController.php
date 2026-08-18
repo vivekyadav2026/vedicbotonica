@@ -101,14 +101,40 @@ class CheckoutController extends Controller
 
         // Create Order Items
         foreach ($cart as $productId => $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $productId,
-                'product_name' => $item['name'],
-                'quantity' => $item['quantity'],
-                'unit_price' => $item['price'],
-                'total_price' => $item['price'] * $item['quantity'],
-            ]);
+            if (str_starts_with($productId, 'bundle_')) {
+                // Parent virtual bundle item
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => null,
+                    'product_name' => $item['name'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $item['price'],
+                    'total_price' => $item['price'] * $item['quantity'],
+                ]);
+
+                // Individual constituent bundle items
+                if (isset($item['bundle_items']) && is_array($item['bundle_items'])) {
+                    foreach ($item['bundle_items'] as $subItem) {
+                        OrderItem::create([
+                            'order_id' => $order->id,
+                            'product_id' => $subItem['id'],
+                            'product_name' => '[Bundle Item] ' . $subItem['name'],
+                            'quantity' => $subItem['quantity'] * $item['quantity'],
+                            'unit_price' => 0.00,
+                            'total_price' => 0.00,
+                        ]);
+                    }
+                }
+            } else {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $productId,
+                    'product_name' => $item['name'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $item['price'],
+                    'total_price' => $item['price'] * $item['quantity'],
+                ]);
+            }
         }
 
         // Check if payment method is Razorpay

@@ -41,9 +41,27 @@
                                         $subtotal += $itemTotal;
                                     @endphp
                                     <tr class="cart-item-row text-gray-700 align-middle" data-id="{{ $id }}">
-                                        <td class="p-6 flex items-center space-x-4">
-                                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="w-16 h-16 object-contain border rounded p-1">
-                                            <a href="/product/{{ $item['slug'] }}" class="font-serif font-semibold text-gray-900 hover:text-primary transition text-sm sm:text-base">{{ $item['name'] }}</a>
+                                        <td class="p-6 flex items-start space-x-4">
+                                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="w-16 h-16 object-contain border rounded p-1 mt-1 flex-shrink-0">
+                                            <div class="min-w-0 flex-1">
+                                                @if(isset($item['is_bundle']) && $item['is_bundle'])
+                                                    <span class="font-serif font-bold text-gray-900 text-sm sm:text-base block">{{ $item['name'] }}</span>
+                                                    
+                                                    <!-- Sub-items List -->
+                                                    <div class="mt-2.5 space-y-1.5 bg-slate-50 p-2.5 rounded-xl border border-slate-100/70 max-w-sm">
+                                                        <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Included Items:</span>
+                                                        @foreach($item['bundle_items'] as $subItem)
+                                                            <div class="flex items-center space-x-2 text-xs text-slate-700 font-sans">
+                                                                <img src="{{ $subItem['image'] }}" alt="{{ $subItem['name'] }}" class="w-6 h-6 object-contain border rounded bg-white p-0.5">
+                                                                <span class="truncate flex-grow font-medium">{{ $subItem['name'] }}</span>
+                                                                <span class="font-bold text-slate-500 whitespace-nowrap">Qty: {{ $subItem['quantity'] }}</span>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                @else
+                                                    <a href="/product/{{ $item['slug'] }}" class="font-serif font-semibold text-gray-900 hover:text-[#C49A6C] transition text-sm sm:text-base block">{{ $item['name'] }}</a>
+                                                @endif
+                                            </div>
                                         </td>
                                         <td class="p-6 font-medium">₹{{ number_format($item['price'], 2) }}</td>
                                         <td class="p-6">
@@ -76,12 +94,30 @@
                                 <div class="flex-1 flex flex-col justify-between">
                                     <div>
                                         <div class="flex justify-between items-start gap-2">
-                                            <a href="/product/{{ $item['slug'] }}" class="font-serif font-bold text-gray-900 hover:text-primary transition text-sm sm:text-base leading-tight">{{ $item['name'] }}</a>
+                                            @if(isset($item['is_bundle']) && $item['is_bundle'])
+                                                <span class="font-serif font-bold text-gray-900 text-sm sm:text-base leading-tight">{{ $item['name'] }}</span>
+                                            @else
+                                                <a href="/product/{{ $item['slug'] }}" class="font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition text-sm sm:text-base leading-tight">{{ $item['name'] }}</a>
+                                            @endif
                                             <button type="button" class="text-gray-400 hover:text-red-500 transition-colors btn-remove-item cursor-pointer" data-id="{{ $id }}">
                                                 <i class="fa-regular fa-trash-can text-base"></i>
                                             </button>
                                         </div>
                                         <p class="text-xs text-gray-500 mt-1">₹{{ number_format($item['price'], 2) }}</p>
+                                        
+                                        @if(isset($item['is_bundle']) && $item['is_bundle'])
+                                            <!-- Sub-items List (Mobile) -->
+                                            <div class="mt-2.5 space-y-1.5 bg-slate-50 p-2 border border-slate-100/70 rounded-xl">
+                                                <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-1">Included Items:</span>
+                                                @foreach($item['bundle_items'] as $subItem)
+                                                    <div class="flex items-center space-x-2 text-xs text-slate-700 font-sans">
+                                                        <img src="{{ $subItem['image'] }}" alt="{{ $subItem['name'] }}" class="w-6 h-6 object-contain border rounded bg-white p-0.5">
+                                                        <span class="truncate flex-grow font-medium">{{ $subItem['name'] }}</span>
+                                                        <span class="font-bold text-slate-500 whitespace-nowrap text-[10px]">Qty: {{ $subItem['quantity'] }}</span>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="flex items-center justify-between mt-3">
                                         <!-- Quantity controls -->

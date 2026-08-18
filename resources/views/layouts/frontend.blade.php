@@ -41,7 +41,7 @@
     
     <!-- Premium Top Announcement Bar -->
     <div class="bg-[#FAF6F0] text-[#b0875b] py-2 text-center text-[10px] sm:text-xs font-bold tracking-widest uppercase border-b border-gray-100/70">
-        <span>✨ Free Shipping Nationwide • Premium Natural Vedic Formulations ✨</span>
+        <span>✨ Free Shipping Nationwide • <a href="{{ route('bundle.builder') }}" class="underline hover:text-gray-900 transition-colors">Build Custom Box (₹799)</a> • Premium Natural Vedic Formulations ✨</span>
     </div>
 
     <!-- Sticky Main Header -->
@@ -216,10 +216,14 @@
 
             <!-- Links -->
             <div class="space-y-6 px-6 py-6 border-b border-gray-100">
-                <a href="{{ url('/') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-primary transition-colors">Home</a>
-                <a href="{{ url('/about') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-primary transition-colors">About Us</a>
-                <a href="{{ url('/shop') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-primary transition-colors">Shop</a>
-                <a href="{{ url('/contact') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-primary transition-colors">Contact Us</a>
+                <a href="{{ url('/') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition-colors">Home</a>
+                <a href="{{ url('/about') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition-colors">About Us</a>
+                <a href="{{ url('/shop') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition-colors">Shop</a>
+                <a href="{{ route('bundle.builder') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-[#C49A6C] hover:text-[#b0875b] transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-gift text-sm"></i>
+                    <span>Super Save Offers</span>
+                </a>
+                <a href="{{ url('/contact') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition-colors">Contact Us</a>
             </div>
 
             <div class="space-y-6 px-6 py-6">

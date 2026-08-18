@@ -491,7 +491,102 @@
     @endif
 
 
+    <!-- Why Choose Vedic Botanica Section (Slide 06) -->
+    <div id="why-choose-us" class="bg-[#FAF6F0]/40 py-16 border-t border-b border-gray-150/70 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">OUR PROMISE</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-4">Why Choose Vedic Botanica?</h2>
+                <p class="text-xs text-gray-500 font-sans mt-2 tracking-wide uppercase">Purity. Authenticity. Excellence.</p>
+                <div class="w-16 h-1 bg-[#C49A6C] mx-auto mt-4 rounded-full"></div>
+            </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center max-w-5xl mx-auto">
+                <!-- Left Side Columns -->
+                <div class="space-y-8">
+                    <!-- Feature 1 -->
+                    <div class="flex items-start gap-4 text-right md:flex-row flex-row-reverse">
+                        <div class="flex-grow">
+                            <h4 class="font-serif font-bold text-gray-900 text-base">Premium Quality</h4>
+                            <p class="text-xs text-gray-500 font-sans mt-1 leading-relaxed">Uncompromising quality and premium standards in every single batch.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white border border-[#C49A6C]/30 flex items-center justify-center text-[#C49A6C] flex-shrink-0 shadow-xs">
+                            <i class="fa-solid fa-award text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="flex items-start gap-4 text-right md:flex-row flex-row-reverse">
+                        <div class="flex-grow">
+                            <h4 class="font-serif font-bold text-gray-900 text-base">Natural & Safe</h4>
+                            <p class="text-xs text-gray-500 font-sans mt-1 leading-relaxed">100% charcoal-free, non-toxic, and completely free from harmful chemicals.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white border border-[#C49A6C]/30 flex items-center justify-center text-[#C49A6C] flex-shrink-0 shadow-xs">
+                            <i class="fa-solid fa-shield-halved text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="flex items-start gap-4 text-right md:flex-row flex-row-reverse">
+                        <div class="flex-grow">
+                            <h4 class="font-serif font-bold text-gray-900 text-base">Eco-Conscious</h4>
+                            <p class="text-xs text-gray-500 font-sans mt-1 leading-relaxed">Committed to eco-friendly packaging and completely biodegradable products.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-white border border-[#C49A6C]/30 flex items-center justify-center text-[#C49A6C] flex-shrink-0 shadow-xs">
+                            <i class="fa-solid fa-leaf text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Center Emblem / Logo -->
+                <div class="flex justify-center py-6 md:py-0">
+                    <div class="relative w-48 h-48 sm:w-56 sm:h-56 rounded-full border-2 border-dashed border-[#C49A6C]/30 flex items-center justify-center bg-white shadow-md p-6 group">
+                        <div class="absolute inset-4 rounded-full border border-[#C49A6C]/20 bg-[#FAF6F0]/50 flex flex-col items-center justify-center text-center p-4">
+                            <img src="{{ asset('images/logo.png') }}" alt="Vedic Botanica Logo" class="h-14 w-auto object-contain mb-2">
+                            <span class="text-[9px] font-bold text-[#C49A6C] tracking-widest uppercase">ESTD 2026</span>
+                            <span class="text-[8px] text-gray-400 font-sans uppercase font-semibold mt-0.5 font-sans">Vedic Essence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side Columns -->
+                <div class="space-y-8">
+                    <!-- Feature 4 -->
+                    <div class="flex items-start gap-4 text-left">
+                        <div class="w-10 h-10 rounded-full bg-white border border-[#C49A6C]/30 flex items-center justify-center text-[#C49A6C] flex-shrink-0 shadow-xs">
+                            <i class="fa-solid fa-hand-holding-hand text-sm"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-serif font-bold text-gray-900 text-base">Traditional Craftsmanship</h4>
+                            <p class="text-xs text-gray-500 font-sans mt-1 leading-relaxed">Handcrafted by rural artisans following ancient Vedic standards.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 5 -->
+                    <div class="flex items-start gap-4 text-left">
+                        <div class="w-10 h-10 rounded-full bg-white border border-[#C49A6C]/30 flex items-center justify-center text-[#C49A6C] flex-shrink-0 shadow-xs">
+                            <i class="fa-solid fa-seedling text-sm"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-serif font-bold text-gray-900 text-base">Botanical Excellence</h4>
+                            <p class="text-xs text-gray-500 font-sans mt-1 leading-relaxed">Sourced from the finest native botanical herbs, resins, and essential oils.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 6 -->
+                    <div class="flex items-start gap-4 text-left">
+                        <div class="w-10 h-10 rounded-full bg-white border border-[#C49A6C]/30 flex items-center justify-center text-[#C49A6C] flex-shrink-0 shadow-xs">
+                            <i class="fa-solid fa-om text-sm"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-serif font-bold text-gray-900 text-base">Spiritual & Holistic</h4>
+                            <p class="text-xs text-gray-500 font-sans mt-1 leading-relaxed">Formulated to purify your living space and harmonize mind, body, and soul.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Featured Healing Essentials -->
@@ -606,19 +701,15 @@
         </div>
     </div>
     @endif
-
-
-       <!-- Ingredients Showcase Section -->
-    <div class="bg-gradient-to-b from-white via-[#FAF6F0]/40 to-white pt-8 pb-10 border-t border-b border-gray-100 relative overflow-hidden">
-        <!-- Center glowing spot -->
+    <!-- Ingredients Showcase Section (Slide 04: The Finest Gifts from Nature) -->
+    <div id="ingredients" class="bg-gradient-to-b from-white via-[#FAF6F0]/40 to-white pt-16 pb-16 border-t border-b border-gray-150/70 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C49A6C]/3 rounded-full blur-3xl pointer-events-none z-0"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">Nature's Pharmacy</span>
-            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-4">Pure & Sacred Ingredients</h2>
+            <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">OUR INGREDIENTS</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-4">The Finest Gifts from Nature</h2>
             
-            <!-- Mandalic/Ayurvedic Divider in SVG -->
-            <div class="flex items-center justify-center space-x-4 mt-3 mb-8">
+            <div class="flex items-center justify-center space-x-4 mt-3 mb-12">
                 <div class="w-16 h-[1px] bg-gradient-to-r from-transparent to-[#C49A6C]"></div>
                 <svg class="w-6 h-6 text-[#C49A6C]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
                     <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke-dasharray="2 2" />
@@ -628,77 +719,154 @@
                 </svg>
                 <div class="w-16 h-[1px] bg-gradient-to-l from-transparent to-[#C49A6C]"></div>
             </div>
-            
-            <p class="text-sm sm:text-base text-gray-500 max-w-lg mx-auto font-sans leading-relaxed mb-10">We source all-natural, certified ingredients that have been revered in Ayurveda for thousands of years.</p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- 8 Ingredients Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 max-w-5xl mx-auto">
                 <!-- Ingredient 1 -->
-                <div class="group bg-white border border-[#C49A6C]/15 rounded-[2rem] p-8 text-center transition-all duration-500 hover:shadow-[0_30px_60px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-2 flex flex-col items-center justify-between relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#FAF6F0]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center">
-                        <!-- Icon Circle Medallion (Large & Double Bordered) -->
-                        <div class="w-20 h-20 bg-[#C49A6C]/10 text-[#C49A6C] rounded-full flex items-center justify-center mb-6 border border-[#C49A6C]/30 shadow-xs ring-6 ring-[#C49A6C]/5 group-hover:bg-[#C49A6C] group-hover:text-white group-hover:rotate-[15deg] transition-all duration-500 ease-out">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 3.5 2.5 4.5 1 2 1.5 3.5.5 5.5a3 3 0 1 1-6.5-1.5" />
-                                <path d="M4 21h16M6 18h12" />
-                            </svg>
-                        </div>
-                        <h3 class="font-serif font-bold text-lg text-gray-900 mb-2 group-hover:text-[#C49A6C] transition-colors duration-300">Desi Cow Dung (Gomaya)</h3>
-                        <div class="w-10 h-[1.5px] bg-[#C49A6C]/30 mb-4 group-hover:w-16 transition-all duration-500 rounded-full mx-auto"></div>
-                        <p class="text-xs sm:text-sm text-gray-500 font-sans leading-relaxed">Sourced from organic Goshala, it purifies the atmosphere and acts as an organic, charcoal-free base.</p>
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-cow text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
                     </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Desi Cow Dung</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Naturally purifying and sacred.</p>
                 </div>
 
                 <!-- Ingredient 2 -->
-                <div class="group bg-white border border-[#C49A6C]/15 rounded-[2rem] p-8 text-center transition-all duration-500 hover:shadow-[0_30px_60px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-2 flex flex-col items-center justify-between relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#FAF6F0]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="w-20 h-20 bg-[#C49A6C]/10 text-[#C49A6C] rounded-full flex items-center justify-center mb-6 border border-[#C49A6C]/30 shadow-xs ring-6 ring-[#C49A6C]/5 group-hover:bg-[#C49A6C] group-hover:text-white group-hover:rotate-[15deg] transition-all duration-500 ease-out">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M5 10a7 7 0 0 0 14 0H5z" fill="currentColor" fill-opacity="0.05" />
-                                <path d="M19 10v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-4" />
-                                <path d="M12 5l-3 5M16 3l-4 7" stroke-width="2" />
-                            </svg>
-                        </div>
-                        <h3 class="font-serif font-bold text-lg text-gray-900 mb-2 group-hover:text-[#C49A6C] transition-colors duration-300">Pure Herbs & Resins</h3>
-                        <div class="w-10 h-[1.5px] bg-[#C49A6C]/30 mb-4 group-hover:w-16 transition-all duration-500 rounded-full mx-auto"></div>
-                        <p class="text-xs sm:text-sm text-gray-500 font-sans leading-relaxed">Guggul, Loban, Jatamansi and other sacred herbs that eliminate negative energy and soothe the mind.</p>
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-fire text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
                     </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Guggul</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Known for its cleansing properties.</p>
                 </div>
 
                 <!-- Ingredient 3 -->
-                <div class="group bg-white border border-[#C49A6C]/15 rounded-[2rem] p-8 text-center transition-all duration-500 hover:shadow-[0_30px_60px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-2 flex flex-col items-center justify-between relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#FAF6F0]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="w-20 h-20 bg-[#C49A6C]/10 text-[#C49A6C] rounded-full flex items-center justify-center mb-6 border border-[#C49A6C]/30 shadow-xs ring-6 ring-[#C49A6C]/5 group-hover:bg-[#C49A6C] group-hover:text-white group-hover:rotate-[15deg] transition-all duration-500 ease-out">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z" fill="currentColor" fill-opacity="0.05" />
-                                <path d="M12 18a3 3 0 0 0 3-3c0-2-3-5-3-5s-3 3-3 5a3 3 0 0 0 3 3z" />
-                            </svg>
-                        </div>
-                        <h3 class="font-serif font-bold text-lg text-gray-900 mb-2 group-hover:text-[#C49A6C] transition-colors duration-300">Natural Essential Oils</h3>
-                        <div class="w-10 h-[1.5px] bg-[#C49A6C]/30 mb-4 group-hover:w-16 transition-all duration-500 rounded-full mx-auto"></div>
-                        <p class="text-xs sm:text-sm text-gray-500 font-sans leading-relaxed">Premium extracts of Rose, Sandalwood, Lavender and Jasmine that linger for hours chemical-free.</p>
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-wind text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
                     </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Loban</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Traditional resin for positivity.</p>
                 </div>
 
                 <!-- Ingredient 4 -->
-                <div class="group bg-white border border-[#C49A6C]/15 rounded-[2rem] p-8 text-center transition-all duration-500 hover:shadow-[0_30px_60px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-2 flex flex-col items-center justify-between relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-[#FAF6F0]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center">
-                        <div class="w-20 h-20 bg-[#C49A6C]/10 text-[#C49A6C] rounded-full flex items-center justify-center mb-6 border border-[#C49A6C]/30 shadow-xs ring-6 ring-[#C49A6C]/5 group-hover:bg-[#C49A6C] group-hover:text-white group-hover:rotate-[15deg] transition-all duration-500 ease-out">
-                            <svg class="w-9 h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 3a6 6 0 0 0-6 6v3a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V9a6 6 0 0 0-6-6z" fill="currentColor" fill-opacity="0.05" />
-                                <path d="M8 8h8M7 12h10M10 16h4M12 3v3" />
-                            </svg>
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-tree text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Sandalwood</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Soothing, fragrant and divine.</p>
+                </div>
+
+                <!-- Ingredient 5 -->
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-circle-notch text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-955 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors font-serif font-bold">Kapoor</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Purifies and refreshes.</p>
+                </div>
+
+                <!-- Ingredient 6 -->
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-droplet text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Essential Oils</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Natural aroma for well-being.</p>
+                </div>
+
+                <!-- Ingredient 7 -->
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-leaf text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Botanical Herbs</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Handpicked for purity and quality.</p>
+                </div>
+
+                <!-- Ingredient 8 -->
+                <div class="group flex flex-col items-center p-4 transition-all duration-300">
+                    <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#FAF6F0] border border-[#C49A6C]/25 flex items-center justify-center shadow-xs group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-500 ring-8 ring-[#C49A6C]/5">
+                        <i class="fa-solid fa-filter text-2xl sm:text-3xl text-[#C49A6C] group-hover:text-white transition-colors duration-500"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-sm sm:text-base text-gray-900 mt-4 uppercase tracking-wider group-hover:text-[#C49A6C] transition-colors">Natural Resins</h3>
+                    <p class="text-xs text-gray-500 font-sans mt-1 max-w-[160px] leading-relaxed">Enhances fragrance and efficacy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Lifestyle Section (Slide 11: Elevate Your Everyday Rituals) -->
+    <div id="lifestyle" class="bg-white py-16 border-t border-b border-gray-150/70 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-xl mx-auto mb-12">
+                <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">LIFESTYLE</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-4">Elevate Your Everyday Rituals</h2>
+                <p class="text-xs text-gray-500 font-sans mt-2 tracking-wide uppercase">For every space. For every soul.</p>
+                <div class="w-16 h-1 bg-[#C49A6C] mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+                <!-- Card 1: Home -->
+                <div class="group bg-[#FAF6F0]/20 hover:bg-white border border-[#C49A6C]/15 hover:border-[#C49A6C] rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-white border border-[#C49A6C]/20 flex items-center justify-center mx-auto mb-4 text-[#C49A6C] group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-house text-lg"></i>
                         </div>
-                        <h3 class="font-serif font-bold text-lg text-gray-900 mb-2 group-hover:text-[#C49A6C] transition-colors duration-300">Ghee & Honey</h3>
-                        <div class="w-10 h-[1.5px] bg-[#C49A6C]/30 mb-4 group-hover:w-16 transition-all duration-500 rounded-full mx-auto"></div>
-                        <p class="text-xs sm:text-sm text-gray-500 font-sans leading-relaxed">Combined as natural binders, creating a slow-burning incense stick that emits positive spiritual frequencies.</p>
+                        <h4 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wide">Home</h4>
+                        <p class="text-xs text-gray-500 font-sans mt-2 leading-relaxed">Purify your living space with daily cleansing aromas that eliminate stale odors and negative energy.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Meditation -->
+                <div class="group bg-[#FAF6F0]/20 hover:bg-white border border-[#C49A6C]/15 hover:border-[#C49A6C] rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-white border border-[#C49A6C]/20 flex items-center justify-center mx-auto mb-4 text-[#C49A6C] group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-brain text-lg"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wide">Meditation</h4>
+                        <p class="text-xs text-gray-500 font-sans mt-2 leading-relaxed">Enhance focus, calm active mental chatter, and invite deep inner peace during mindfulness sessions.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Temple -->
+                <div class="group bg-[#FAF6F0]/20 hover:bg-white border border-[#C49A6C]/15 hover:border-[#C49A6C] rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-white border border-[#C49A6C]/20 flex items-center justify-center mx-auto mb-4 text-[#C49A6C] group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-gopuram text-lg"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wide">Temple</h4>
+                        <p class="text-xs text-gray-500 font-sans mt-2 leading-relaxed">Sacred, charcoal-free formulations crafted specifically for daily pooja and divine worship.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Yoga & Wellness -->
+                <div class="group bg-[#FAF6F0]/20 hover:bg-white border border-[#C49A6C]/15 hover:border-[#C49A6C] rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-white border border-[#C49A6C]/20 flex items-center justify-center mx-auto mb-4 text-[#C49A6C] group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-child-yoga text-lg"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wide">Yoga & Wellness</h4>
+                        <p class="text-xs text-gray-500 font-sans mt-2 leading-relaxed">Support deep breathing, enhance pranayam exercises, and restore physical and mental wellness.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Spa & Relaxation -->
+                <div class="group bg-[#FAF6F0]/20 hover:bg-white border border-[#C49A6C]/15 hover:border-[#C49A6C] rounded-2xl p-6 text-center transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full">
+                    <div>
+                        <div class="w-12 h-12 rounded-full bg-white border border-[#C49A6C]/20 flex items-center justify-center mx-auto mb-4 text-[#C49A6C] group-hover:bg-[#C49A6C] group-hover:text-white transition-all duration-300">
+                            <i class="fa-solid fa-spa text-lg"></i>
+                        </div>
+                        <h4 class="font-serif font-bold text-gray-900 text-sm uppercase tracking-wide">Spa & Relaxation</h4>
+                        <p class="text-xs text-gray-500 font-sans mt-2 leading-relaxed">Create a soothing, luxurious aroma-filled sanctuary to wash away stress and ease your senses.</p>
                     </div>
                 </div>
             </div>
@@ -706,82 +874,6 @@
     </div>
 
 
-
-
-
-    <!-- Testimonials -->
-    <div class="bg-[#FAF6F0]/30 pt-8 pb-10 border-t border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-xl mx-auto mb-10">
-                <span class="text-xs text-[#C49A6C] font-bold uppercase tracking-widest bg-[#C49A6C]/10 px-3.5 py-1.5 rounded-full font-serif">Wall of Love</span>
-                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-4">Trusted by Devotees</h2>
-                <div class="w-16 h-1 bg-[#C49A6C] mx-auto mt-4 mb-3 rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @if($testimonials->isEmpty())
-                    <!-- Testimonial 1 -->
-                    <div class="bg-white p-8 rounded-3xl shadow-[0_10px_30px_rgba(196,154,108,0.03)] border border-[#C49A6C]/15 text-center relative hover:shadow-[0_20px_50px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-1 transition-all duration-300">
-                        <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#C49A6C] to-[#b0875b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg font-serif border-2 border-white ring-4 ring-[#C49A6C]/10">“</span>
-                        <div class="text-[#C49A6C] text-sm mb-4 mt-4 flex justify-center gap-1">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic mb-4 text-sm leading-relaxed">
-                            "I ordered the Vedic Sandal Dhoop. The aroma is incredibly authentic and lingering. Unlike ordinary incense, there's absolutely no chemical smell or throat irritation."
-                        </p>
-                        <div class="w-8 h-[1px] bg-[#C49A6C]/30 mx-auto my-3"></div>
-                        <h4 class="font-bold font-serif text-gray-955 tracking-wider text-base">RAHUL SHARMA</h4>
-                        <p class="text-[10px] text-[#C49A6C] uppercase tracking-widest font-bold mt-1">Delhi</p>
-                    </div>
-                    <!-- Testimonial 2 -->
-                    <div class="bg-white p-8 rounded-3xl shadow-[0_10px_30px_rgba(196,154,108,0.03)] border border-[#C49A6C]/15 text-center relative hover:shadow-[0_20px_50px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-1 transition-all duration-300">
-                        <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#C49A6C] to-[#b0875b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg font-serif border-2 border-white ring-4 ring-[#C49A6C]/10">“</span>
-                        <div class="text-[#C49A6C] text-sm mb-4 mt-4 flex justify-center gap-1">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic mb-4 text-sm leading-relaxed">
-                            "Vedic Botanica's Gomaya dhoop sticks smell pure and sacred, exactly like a temple hawan. My daily meditation feels much more focused now."
-                        </p>
-                        <div class="w-8 h-[1px] bg-[#C49A6C]/30 mx-auto my-3"></div>
-                        <h4 class="font-bold font-serif text-gray-955 tracking-wider text-base">PRIYA MISHRA</h4>
-                        <p class="text-[10px] text-[#C49A6C] uppercase tracking-widest font-bold mt-1">Mumbai</p>
-                    </div>
-                    <!-- Testimonial 3 -->
-                    <div class="bg-white p-8 rounded-3xl shadow-[0_10px_30px_rgba(196,154,108,0.03)] border border-[#C49A6C]/15 text-center relative hover:shadow-[0_20px_50px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-1 transition-all duration-300">
-                        <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#C49A6C] to-[#b0875b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg font-serif border-2 border-white ring-4 ring-[#C49A6C]/10">“</span>
-                        <div class="text-[#C49A6C] text-sm mb-4 mt-4 flex justify-center gap-1">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-gray-600 italic mb-4 text-sm leading-relaxed">
-                            "The packaging is beautiful and premium, making it a perfect gift. Very fast delivery and excellent customer support from Vedic Botanica."
-                        </p>
-                        <div class="w-8 h-[1px] bg-[#C49A6C]/30 mx-auto my-3"></div>
-                        <h4 class="font-bold font-serif text-gray-955 tracking-wider text-base">ANKIT VERMA</h4>
-                        <p class="text-[10px] text-[#C49A6C] uppercase tracking-widest font-bold mt-1">Bengaluru</p>
-                    </div>
-                @else
-                    @foreach($testimonials as $testimonial)
-                    <div class="bg-white p-8 rounded-3xl shadow-[0_10px_30px_rgba(196,154,108,0.03)] border border-[#C49A6C]/15 text-center relative hover:shadow-[0_20px_50px_rgba(196,154,108,0.12)] hover:border-[#C49A6C] hover:-translate-y-1 transition-all duration-300">
-                        <span class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#C49A6C] to-[#b0875b] text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg font-serif border-2 border-white ring-4 ring-[#C49A6C]/10">“</span>
-                        <div class="text-[#C49A6C] text-sm mb-4 mt-4 flex justify-center gap-1">
-                            @for($i = 0; $i < ($testimonial->rating ?? 5); $i++)
-                                <i class="fa-solid fa-star"></i>
-                            @endfor
-                        </div>
-                        <p class="text-gray-600 italic mb-4 text-sm leading-relaxed">
-                            "{{ $testimonial->content }}"
-                        </p>
-                        <div class="w-8 h-[1px] bg-[#C49A6C]/30 mx-auto my-3"></div>
-                        <h4 class="font-bold font-serif text-gray-955 tracking-wider text-base uppercase">{{ $testimonial->name }}</h4>
-                        @if($testimonial->location)
-                            <p class="text-[10px] text-[#C49A6C] uppercase tracking-widest font-bold mt-1">{{ $testimonial->location }}</p>
-                        @endif
-                    </div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
-    </div>
 
     @push('scripts')
     <script>

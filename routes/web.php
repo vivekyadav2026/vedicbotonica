@@ -32,10 +32,12 @@ Route::get('/shipping-policy', [FrontendController::class, 'shipping'])->name('s
 
 // API/Ajax Routes for Cart, Wishlist, and Quick View
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/add-bundle', [CartController::class, 'addBundle'])->name('cart.add-bundle');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/super-save-offer', [FrontendController::class, 'bundleBuilder'])->name('bundle.builder');
 
 // Checkout Routes (require login)
 Route::middleware('auth')->group(function () {

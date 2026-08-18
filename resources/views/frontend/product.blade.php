@@ -84,7 +84,6 @@
                     @endif
                 </div>
 
-
                 <!-- Size / Weight Selection -->
                 <div class="space-y-2">
                     <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Size / Weight</span>
@@ -178,6 +177,8 @@
 
             </div>
         </div>
+
+
 
         <!-- Product Reviews Section -->
         <div id="reviews-section" class="mt-20 border-t border-gray-150/70 pt-16">

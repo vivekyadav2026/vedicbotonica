@@ -158,15 +158,30 @@
                         
                         <div class="divide-y divide-gray-250 max-h-80 overflow-y-auto mb-6">
                             @foreach($cart as $id => $item)
-                                <div class="flex justify-between items-center py-4">
-                                    <div class="flex items-center space-x-3">
-                                        <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="w-12 h-12 object-contain border rounded-lg p-1 bg-white">
-                                        <div>
-                                            <h4 class="font-semibold text-gray-955 text-sm leading-tight max-w-[150px] truncate">{{ $item['name'] }}</h4>
-                                            <span class="text-xs text-gray-500">Qty: {{ $item['quantity'] }}</span>
+                                <div class="py-4">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center space-x-3">
+                                            <img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" class="w-12 h-12 object-contain border rounded-lg p-1 bg-white flex-shrink-0">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-955 text-sm leading-tight max-w-[150px] truncate">{{ $item['name'] }}</h4>
+                                                <span class="text-xs text-gray-500">Qty: {{ $item['quantity'] }}</span>
+                                            </div>
                                         </div>
+                                        <span class="font-bold text-gray-900 text-sm">₹{{ number_format($item['price'] * $item['quantity'], 2) }}</span>
                                     </div>
-                                    <span class="font-bold text-gray-900 text-sm">₹{{ number_format($item['price'] * $item['quantity'], 2) }}</span>
+                                    
+                                    @if(isset($item['is_bundle']) && $item['is_bundle'])
+                                        <!-- Sub-items nested list in Checkout -->
+                                        <div class="mt-2.5 ml-15 space-y-1 bg-slate-50 p-2 border border-slate-100 rounded-lg max-w-[200px]">
+                                            <span class="text-[9px] font-bold text-slate-400 uppercase tracking-wider block mb-0.5">Box Contents:</span>
+                                            @foreach($item['bundle_items'] as $subItem)
+                                                <div class="flex items-center space-x-1.5 text-[11px] text-slate-700 font-sans">
+                                                    <span class="truncate flex-grow font-medium">{{ $subItem['name'] }}</span>
+                                                    <span class="font-bold text-slate-500">x{{ $subItem['quantity'] }}</span>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
                             @endforeach
                         </div>

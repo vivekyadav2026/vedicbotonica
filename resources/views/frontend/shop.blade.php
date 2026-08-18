@@ -151,10 +151,10 @@
                             
                             <!-- Sale Badge -->
                             @if($product->sale_price)
-                            @php
-                                $discountPercent = round((($product->price - $product->sale_price) / $product->price) * 100);
-                            @endphp
-                            <div class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-red-500 text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded-md shadow z-10 tracking-wider">{{ $discountPercent }}% OFF</div>
+                                @php
+                                    $discountPercent = round((($product->price - $product->sale_price) / $product->price) * 100);
+                                @endphp
+                                <div class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-red-500 text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded-md shadow z-10 tracking-wider font-sans">{{ $discountPercent }}% OFF</div>
                             @endif
                             
                             <!-- Floating Quick Action Icons (Grid Mode Only) -->
