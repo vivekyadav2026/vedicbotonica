@@ -74,11 +74,21 @@
         <!-- Desktop Header (Centered Logo with Explore Menu & Utility Icons) -->
         <div class="hidden md:block max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 relative">
-                <!-- Left: Explore Button -->
-                <button @click="mobileMenuOpen = true" class="flex items-center gap-2.5 text-xs font-bold font-sans uppercase tracking-[0.2em] text-gray-700 hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer group">
-                    <i class="fa-solid fa-bars text-sm group-hover:scale-110 transition-transform"></i>
-                    <span>Explore</span>
-                </button>
+                <!-- Left: Explore Button & Nav Links -->
+                <div class="flex items-center space-x-6 lg:space-x-8">
+                    <button @click="mobileMenuOpen = true" class="flex items-center gap-2.5 text-xs font-bold font-sans uppercase tracking-[0.2em] text-gray-700 hover:text-[#C49A6C] transition-all duration-300 focus:outline-none cursor-pointer group">
+                        <i class="fa-solid fa-bars text-sm group-hover:scale-110 transition-transform"></i>
+                        <span>Explore</span>
+                    </button>
+                    
+                    <nav class="hidden lg:flex items-center space-x-4 lg:space-x-6">
+                        <a href="{{ url('/') }}" class="text-[10px] font-bold font-sans uppercase tracking-wider text-gray-600 hover:text-[#C49A6C] transition-colors">Home</a>
+                        <a href="{{ url('/shop') }}" class="text-[10px] font-bold font-sans uppercase tracking-wider text-gray-600 hover:text-[#C49A6C] transition-colors">Shop</a>
+                        <a href="{{ route('bundle.builder') }}" class="text-[10px] font-bold font-sans uppercase tracking-wider text-[#C49A6C] hover:text-[#b0875b] transition-colors flex items-center gap-1.5"><i class="fa-solid fa-gift text-[9px]"></i> Premium Combos</a>
+                        <a href="{{ url('/about') }}" class="text-[10px] font-bold font-sans uppercase tracking-wider text-gray-600 hover:text-[#C49A6C] transition-colors">About</a>
+                        <a href="{{ url('/contact') }}" class="text-[10px] font-bold font-sans uppercase tracking-wider text-gray-600 hover:text-[#C49A6C] transition-colors">Contact</a>
+                    </nav>
+                </div>
 
                 <!-- Center: Logo -->
                 <div class="absolute left-1/2 -translate-x-1/2 flex-shrink-0 flex items-center transition-transform duration-300 hover:scale-102 z-10">
@@ -246,7 +256,7 @@
                 <a href="{{ url('/shop') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition-colors">Shop</a>
                 <a href="{{ route('bundle.builder') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-[#C49A6C] hover:text-[#b0875b] transition-colors flex items-center gap-2">
                     <i class="fa-solid fa-gift text-sm"></i>
-                    <span>Super Save Offers</span>
+                    <span>Premium Combos</span>
                 </a>
                 <a href="{{ url('/contact') }}" @click="mobileMenuOpen = false" class="block text-base font-serif font-bold text-gray-900 hover:text-[#C49A6C] transition-colors">Contact Us</a>
             </div>
@@ -364,48 +374,48 @@
     <div class="bg-[#FAF6F0] py-12 border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-[10px] text-gray-400 uppercase tracking-widest font-bold font-sans mb-8">Delivered With</h3>
-            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-16">
+            <div class="grid grid-cols-2 gap-3 md:flex md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-8 lg:gap-16">
                 <!-- Make In India -->
-                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
-                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center space-x-2 sm:space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors w-full md:w-auto">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
                     </svg>
-                    <div class="text-left">
-                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">Make In India</span>
-                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Local Artisans</span>
+                    <div class="text-left min-w-0">
+                        <span class="block text-[9px] sm:text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase truncate">Make In India</span>
+                        <span class="text-[7px] sm:text-[8px] font-sans text-gray-400 mt-1 block truncate">Local Artisans</span>
                     </div>
                 </div>
 
                 <!-- Ayush Ministry -->
-                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
-                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center space-x-2 sm:space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors w-full md:w-auto">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-1-6l-3-3 1.41-1.41L11 13.17l4.59-4.59L17 10l-6 6z"/>
                     </svg>
-                    <div class="text-left">
-                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">Ayush Certified</span>
-                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Standard Quality</span>
+                    <div class="text-left min-w-0">
+                        <span class="block text-[9px] sm:text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase truncate">Ayush Certified</span>
+                        <span class="text-[7px] sm:text-[8px] font-sans text-gray-400 mt-1 block truncate">Standard Quality</span>
                     </div>
                 </div>
 
                 <!-- 100% Organic -->
-                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
-                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center space-x-2 sm:space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors w-full md:w-auto">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17 8C8 10 5.9 16.17 6 20c.07 2.76 2.24 5 5 5h2c2.76 0 4.93-2.24 5-5 .1-3.83-2-9.83-11-12m-3 14c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
                     </svg>
-                    <div class="text-left">
-                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">100% Organic</span>
-                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Nature Sourced</span>
+                    <div class="text-left min-w-0">
+                        <span class="block text-[9px] sm:text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase truncate">100% Organic</span>
+                        <span class="text-[7px] sm:text-[8px] font-sans text-gray-400 mt-1 block truncate">Nature Sourced</span>
                     </div>
                 </div>
 
                 <!-- Logistics Partner -->
-                <div class="flex items-center space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-5 py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors">
-                    <svg class="w-8 h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center space-x-2 sm:space-x-3 bg-[#FAF6F0]/40 border border-[#C49A6C]/10 rounded-2xl px-3 py-2.5 sm:px-5 sm:py-3 shadow-xs hover:border-[#C49A6C]/40 transition-colors w-full md:w-auto">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-[#C49A6C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm12 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1-5.5h-2.5V10H17l2 3z"/>
                     </svg>
-                    <div class="text-left">
-                        <span class="block text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase">Express Shipping</span>
-                        <span class="text-[8px] font-sans text-gray-400 mt-1 block">Secure Delivery</span>
+                    <div class="text-left min-w-0">
+                        <span class="block text-[9px] sm:text-[10px] font-sans font-bold text-gray-900 tracking-wider leading-none uppercase truncate">Express Shipping</span>
+                        <span class="text-[7px] sm:text-[8px] font-sans text-gray-400 mt-1 block truncate">Secure Delivery</span>
                     </div>
                 </div>
             </div>
@@ -486,10 +496,11 @@
                 <div>
                     <h3 class="text-lg font-bold mb-4 font-serif text-gray-900">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="/" class="text-gray-600 hover:text-primary text-sm transition-colors">Home</a></li>
-                        <li><a href="/about" class="text-gray-600 hover:text-primary text-sm transition-colors">About Us</a></li>
-                        <li><a href="/shop" class="text-gray-600 hover:text-primary text-sm transition-colors">Shop</a></li>
-                        <li><a href="/contact" class="text-gray-600 hover:text-primary text-sm transition-colors">Contact Us</a></li>
+                        <li><a href="{{ url('/') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Home</a></li>
+                        <li><a href="{{ url('/shop') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Shop</a></li>
+                        <li><a href="{{ route('bundle.builder') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Premium Combos</a></li>
+                        <li><a href="{{ url('/about') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">About Us</a></li>
+                        <li><a href="{{ url('/contact') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Contact Us</a></li>
                     </ul>
                 </div>
 
@@ -497,11 +508,11 @@
                 <div>
                     <h3 class="text-lg font-bold mb-4 font-serif text-gray-900">Helpful Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="{{ route('privacy') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Privacy Policy</a></li>
-                        <li><a href="{{ route('terms') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Terms & Conditions</a></li>
-                        <li><a href="{{ route('refund') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Refund Policy</a></li>
-                        <li><a href="{{ route('cancellation') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Cancellation Policy</a></li>
-                        <li><a href="{{ route('shipping') }}" class="text-gray-600 hover:text-primary text-sm transition-colors">Shipping Policy</a></li>
+                        <li><a href="{{ route('privacy') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Privacy Policy</a></li>
+                        <li><a href="{{ route('terms') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Terms & Conditions</a></li>
+                        <li><a href="{{ route('refund') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Refund Policy</a></li>
+                        <li><a href="{{ route('cancellation') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Cancellation Policy</a></li>
+                        <li><a href="{{ route('shipping') }}" class="text-gray-600 hover:text-[#C49A6C] text-sm transition-colors">Shipping Policy</a></li>
                     </ul>
                 </div>
 
@@ -538,7 +549,7 @@
                     }
                 </style>
                 <div class="whatsapp-float">
-                    <a href="https://wa.me/9217530653." target="_blank" class="bg-green-500 hover:bg-green-600 text-white h-14 w-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110">
+                    <a href="https://wa.me/919217530653" target="_blank" class="bg-green-500 hover:bg-green-600 text-white h-14 w-14 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110">
                         <i class="fa-brands fa-whatsapp text-3xl"></i>
                     </a>
                 </div>

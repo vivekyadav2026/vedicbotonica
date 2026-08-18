@@ -121,6 +121,17 @@ class FrontendController extends Controller
         $products = $query->paginate(12)->withQueryString();
         $categories = Category::where('is_active', true)->get();
 
+        if ($request->ajax()) {
+            $html = '';
+            foreach ($products as $product) {
+                $html .= view('frontend.partials.product_card', compact('product'))->render();
+            }
+            return response()->json([
+                'html' => $html,
+                'nextPageUrl' => $products->nextPageUrl()
+            ]);
+        }
+
         return view('frontend.shop', compact('products', 'categories'));
     }
 

@@ -527,7 +527,7 @@
                                     <div class="flex items-baseline space-x-1.5 flex-wrap">
                                         <span class="text-sm sm:text-base font-serif font-bold text-gray-900">₹{{ number_format($relProduct->sale_price) }}</span>
                                         <span class="text-[10px] sm:text-xs text-gray-400 line-through">₹{{ number_format($relProduct->price) }}</span>
-                                        <span class="text-[10px] text-red-500 font-bold font-sans">({{ $discountPercent }}% Off)</span>
+                                        <span class="text-[10px] text-red-500 font-bold font-sans hidden sm:inline">({{ $discountPercent }}% Off)</span>
                                     </div>
                                 @else
                                     <span class="text-sm sm:text-base font-serif font-bold text-gray-900">₹{{ number_format($relProduct->price) }}</span>

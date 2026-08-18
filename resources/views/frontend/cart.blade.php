@@ -3,14 +3,22 @@
 @section('title', 'Shopping Cart')
 
 @section('content')
-    <!-- Page Header -->
-    <div class="bg-[#fdfaf6] py-5 md:py-12 text-center border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-[10px] md:text-sm text-gray-500 uppercase tracking-widest leading-relaxed">
-                <a href="/" class="hover:text-primary transition">Home</a> / 
+    <!-- Page Header (Premium Banner Style) -->
+    <div class="relative bg-gradient-to-br from-[#FAF6F0] via-white to-[#FAF6F0] py-16 md:py-24 border-b border-[#C49A6C]/20 overflow-hidden text-center animate-fade-in">
+        <!-- Background Banner Image with Subtle Overlay -->
+        <div class="absolute inset-0 opacity-[0.25] mix-blend-overlay bg-cover bg-center bg-no-repeat pointer-events-none" style="background-image: url('{{ asset('images/about_hero_banner.png') }}');"></div>
+        <!-- Decorative subtle golden circular glow -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#C49A6C]/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <p class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-[0.25em] font-sans">
+                <a href="{{ url('/') }}" class="hover:text-[#C49A6C] transition-colors">Home</a> 
+                <span class="mx-2 text-[#C49A6C]">•</span> 
                 <span class="text-gray-900 font-medium">Cart</span>
             </p>
-            <h1 class="text-2xl sm:text-4xl font-serif font-bold text-gray-900 mt-1 md:mt-2">Shopping Cart</h1>
+            <h1 class="text-3xl sm:text-5xl font-serif font-bold text-gray-955 uppercase tracking-widest mt-3">Shopping Cart</h1>
+            <p class="text-[10px] text-[#C49A6C] uppercase font-bold tracking-widest font-serif mt-2">Your Sacred Selections</p>
+            <div class="w-16 h-[1.5px] bg-[#C49A6C] mx-auto mt-4"></div>
         </div>
     </div>
 
